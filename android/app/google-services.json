@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "782320579749",
+    "firebase_url": "https://arteify.firebaseio.com",
+    "project_id": "arteify",
+    "storage_bucket": "arteify.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782320579749:android:3f332877db5c9918aa094c",
+        "android_client_info": {
+          "package_name": "com.arteify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "782320579749-dec2v40dnmum8rn58sgn5ldoa86n61ar.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEkHJUrGpzV5BCXuzo2iTsHPsmEGQWEJM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "782320579749-dec2v40dnmum8rn58sgn5ldoa86n61ar.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
