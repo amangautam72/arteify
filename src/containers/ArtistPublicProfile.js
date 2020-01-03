@@ -180,7 +180,7 @@ class ArtistPublicProfile extends React.Component {
                     <Left style={{ flexDirection: "row" }}>
                         <Button transparent
                             onPress={() => this.props.navigation.goBack()}>
-                            <Icon name='arrow-back' />
+                            <Icon style={{color:Colors.Darkgrey}} name='arrow-back' />
 
                         </Button>
                         <Text style={{ fontSize: 18, padding: 10, color: Colors.Darkgrey, fontWeight: 'bold' }}>{'Profile '}</Text>

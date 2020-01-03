@@ -161,10 +161,10 @@ class ArtistServices extends React.Component {
                     <Left style={{ flexDirection: "row" }}>
                         <Button transparent
                             onPress={() => this.props.navigation.navigate('Profile')}>
-                            <Icon name='arrow-back' />
+                            <Icon style={{ color: Colors.Darkgrey }} name='arrow-back' />
 
                         </Button>
-                        <Text style={{ fontSize: 18, padding: 10, color: '#fff', fontWeight: 'bold' }}>{'Services '}</Text>
+                        <Text style={{ fontSize: 18, padding: 10, color: Colors.Darkgrey, fontWeight: 'bold' }}>{'Services '}</Text>
                     </Left>
 
                     <Right></Right>

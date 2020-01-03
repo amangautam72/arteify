@@ -206,10 +206,10 @@ class GigRequests extends React.Component {
                     <Left style={{flex:1, flexDirection: "row" }}>
                         <Button transparent
                             onPress={() => this.props.navigation.navigate('Profile')}>
-                            <Icon name='arrow-back' />
+                            <Icon style={{ color: Colors.Darkgrey }} name='arrow-back' />
 
                         </Button>
-                        <Text style={{ fontSize: 18, padding: 10, color: '#fff', fontWeight: 'bold' }}>{'Gig Requests '}</Text>
+                        <Text style={{ fontSize: 18, padding: 10, color: Colors.Darkgrey, fontWeight: 'bold' }}>{'Gig Requests '}</Text>
                     </Left>
 
                     <Right></Right>
