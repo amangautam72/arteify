@@ -170,7 +170,7 @@ export default class Home extends React.Component {
         return (
             <View
                 style={{ flex: 1, }}>
-                <Header androidStatusBarColor={"#505050"}
+                <Header androidStatusBarColor={Colors.Darkgrey}
                     style={{ backgroundColor: '#DDDDDD' }}>
                     <Left style={{ flexDirection: 'row', paddingLeft: 10 }}>
                         {/* {this.state.userid != '' &&  <Button

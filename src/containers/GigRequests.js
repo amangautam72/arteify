@@ -202,7 +202,7 @@ class GigRequests extends React.Component {
         return (
             <View
                 style={{ flex: 1, }}>
-                 <Header style={{ backgroundColor: Colors.appColor }}>
+                 <Header androidStatusBarColor={Colors.Darkgrey} style={{ backgroundColor:'#DDDDDD'}}>
                     <Left style={{flex:1, flexDirection: "row" }}>
                         <Button transparent
                             onPress={() => this.props.navigation.navigate('Profile')}>

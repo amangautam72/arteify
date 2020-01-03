@@ -16,8 +16,8 @@ const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 class LoginPage extends React.Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             email: '',
             password: '',
@@ -49,13 +49,14 @@ class LoginPage extends React.Component {
             if (props.hasError) {
                 Toast.show({ text: "Some Error", buttonText: 'okay', duration: 3000 })
             } else if (props.loginSuccessful) {
-                if (props.response.is_complete == 1) {
-                    this.props.navigation.navigate('Home')
-                } else {
-                    this.props.navigation.navigate('AddService')
-                }
-
-
+                
+                    if (props.response.is_complete == 1) {
+                        this.props.navigation.navigate('Home')
+                    } else {
+                        this.props.navigation.navigate('AddService')
+                    }
+                
+               
                 Toast.show({ text: 'You have successfully logged In', buttonText: 'okay', duration: 3000 })
             }
         }

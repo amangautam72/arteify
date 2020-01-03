@@ -121,7 +121,7 @@ class PayNow extends React.Component {
             })
             return;
         } else if (this.state.value == "1") {
-            let tenPercent = parseFloat(this.state.amount) * (10 / 100)
+            let tenPercent = parseFloat(this.state.amount) * (15 / 100)
             amount = tenPercent.toString()
         } else {
             amount = this.state.amount
@@ -183,8 +183,7 @@ class PayNow extends React.Component {
         return (
             <View
                 style={{ flex: 1, }}>
-                <Header androidStatusBarColor={"#505050"}
-                    style={{ backgroundColor: '#DDDDDD' }}>
+                <Header androidStatusBarColor={Colors.Darkgrey} style={{ backgroundColor:'#DDDDDD'}}>
                     <Left style={{ flexDirection: "row" }}>
                         <Button transparent
                             onPress={() => this.props.navigation.goBack()}>
@@ -217,7 +216,7 @@ class PayNow extends React.Component {
                         <RadioButton
                             style={{ padding: 20 }}
                             value={'1'} >
-                            <Text>10 % of the amount</Text>
+                            <Text>20 % of the amount</Text>
                         </RadioButton>
 
 

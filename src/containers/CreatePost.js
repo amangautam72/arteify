@@ -81,7 +81,7 @@ export default class CreatePost extends React.Component {
                 style={{ flex: 1, }}>
 
                 {this.state.isLoading && <Loader></Loader>}   
-                <Header androidStatusBarColor={"#505050"} 
+                <Header androidStatusBarColor={Colors.Darkgrey} 
                 style={{ backgroundColor:'#DDDDDD'}}>
                     <Left style={{flex:1,flexDirection:'row',paddingLeft:10}}>
                         {/* <Button 

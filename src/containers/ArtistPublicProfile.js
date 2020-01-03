@@ -175,7 +175,7 @@ class ArtistPublicProfile extends React.Component {
                 style={{ flex: 1, }}>
 
                 {this.props.isLoading && <Loader></Loader>}
-                <Header androidStatusBarColor={"#505050"}
+                <Header androidStatusBarColor={Colors.Darkgrey}
                     style={{ backgroundColor: '#DDDDDD' }}>
                     <Left style={{ flexDirection: "row" }}>
                         <Button transparent

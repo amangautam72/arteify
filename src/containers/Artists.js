@@ -122,7 +122,7 @@ class Artists extends React.Component {
         return (
             <View
                 style={{ flex: 1, }}>
-                     <Header androidStatusBarColor={"#505050"}
+                     <Header androidStatusBarColor={Colors.Darkgrey}
                     style={{ backgroundColor: '#DDDDDD' }}>
                     <Left style={{flexDirection:"row"}}>
                         <Button transparent

@@ -157,7 +157,7 @@ class ArtistServices extends React.Component {
         return (
             <View
                 style={{ flex: 1, }}>
-                <Header style={{ backgroundColor: Colors.appColor }}>
+                <Header androidStatusBarColor={Colors.Darkgrey} style={{ backgroundColor:'#DDDDDD'}}>
                     <Left style={{ flexDirection: "row" }}>
                         <Button transparent
                             onPress={() => this.props.navigation.navigate('Profile')}>
