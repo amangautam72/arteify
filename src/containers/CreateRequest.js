@@ -85,10 +85,10 @@ class CreateRequest extends React.Component {
 
     }
 
+
     componentWillReceiveProps(props) {
 
-        console.log("PROPS: : " + JSON.stringify(props))
-        console.log("THIS.PROPS: : " + JSON.stringify(this.props))
+        console.log("PROPS : " + JSON.stringify(props))
 
         if (props != this.props) {
 
@@ -96,13 +96,14 @@ class CreateRequest extends React.Component {
                 Toast.show({ text: "Some Error", buttonText: 'okay', duration: 3000 })
 
             } else {
-                const { params } = this.props.navigation.state;
-                if (params.reload != null) {
-                    params.reload(this.state.userid)
-                    this.props.navigation.goBack()
-                } else {
+                // const { params } = this.props.navigation.state;
+                
+                // if (params.reload != null) {
+                //     params.reload(this.state.userid)
+                //     this.props.navigation.goBack()
+                // } else {
                     this.props.navigation.replace('Profile', { gotoHome: true })
-                }
+                //}
 
 
 
@@ -143,6 +144,7 @@ class CreateRequest extends React.Component {
     }
 
     onSubmit = (type) => {
+        console.log("---- " + type)
        
         let title = this.state.title
         let description = this.state.description
@@ -165,6 +167,8 @@ class CreateRequest extends React.Component {
             Toast.show({ text: 'Please fill the required information', buttonText: 'okay', duration: 3000 })
             return
         }
+
+        
        
         if (type === 'UPDATE') {
             let requestid = this.props.navigation.getParam('requestid')
@@ -174,7 +178,7 @@ class CreateRequest extends React.Component {
                 if (isConnected) {
                     updateRequest(requestid, title, description, categoryid, numOfPeople, duration, budget, links, availableSlots.toString()).then(res => {
 
-                        console.log("RESPONSE === " + JSON.stringify(res))
+                        console.log("UPDATED === " + JSON.stringify(res))
 
                         if (res.status == '1') {
                             const { params } = this.props.navigation.state;
@@ -194,11 +198,10 @@ class CreateRequest extends React.Component {
                 }
                 else {
                     Toast.show({ text: 'No internet connection found!- Internet connection required to use this app', buttonText: 'okay', duration: 3000 })
-                    dispatch(noInternet())
                 }
             })
         } else {
-            //this.props.submit(this.state.userid, title, description, categoryid, numOfPeople, duration, budget, links, availableSlots.toString())
+            this.props.submit(this.state.userid, title, description, categoryid, numOfPeople, duration, budget, links, availableSlots.toString())
         }
 
     }

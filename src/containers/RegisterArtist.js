@@ -113,7 +113,7 @@ class RegisterArtist extends React.Component {
                     
                     if(res.status == '1'){
                         this.props.navigation.navigate("VerifyUser",
-                        {username : username,email: email,
+                        {username: username,email: email,
                             password:password,description:description,
                             number:number, locationid : locationid, usertype: "2"})
                         

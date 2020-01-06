@@ -319,7 +319,7 @@ class Profile extends React.Component {
                             numOfPeople: '', duration: '',
                             budget: '', workLinks: [],
                             slot: [],
-                            reload: (userid) => this.reloadPage(userid)
+                            reload: null
                         })}
                         style={{ backgroundColor: Colors.redColor, borderRadius: 3, padding: 5, marginTop: 5, marginLeft: 20, marginRight: 20, marginBottom: 10 }}>
                         <Text style={{ color: '#fff', textAlign: 'center', fontWeight: 'bold' }}>{"ADD SERVICE"}</Text>

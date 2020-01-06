@@ -57,7 +57,7 @@ export default class AddServices extends React.Component {
 
 
                 <Text
-                onPress={() => this.props.navigation.navigate('Home')}
+                onPress={() => this.props.navigation.replace('Navigator')}
                 style={{position:'absolute', right:20, bottom:30,
                  fontSize:15,fontWeight:'600'}}
                 >

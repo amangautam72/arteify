@@ -51,7 +51,7 @@ export function crRequest(userid,title,description,category,numOfPeople,duration
                     if(res.status == '1'){
                        
         
-                        dispatch(postingSuccessful(res.data))
+                        dispatch(postingSuccessful(res))
                     }else{
                         dispatch(postingError(res.data))
         
@@ -63,7 +63,7 @@ export function crRequest(userid,title,description,category,numOfPeople,duration
             }
             else{
                 Toast.show({ text: 'No internet connection found!- Internet connection required to use this app', buttonText: 'okay', duration: 3000 })
-                dispatch(noInternet())
+                //dispatch(noInternet())
             }
         })
 

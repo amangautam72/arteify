@@ -72,6 +72,8 @@ class VerifyUser extends React.Component {
                     if (res.status == '1') {
                         if (usertype == "2") {
                             this.props.navigation.replace('AddService')
+                            this.storeValues(res.data.userinfo.usertype, 
+                                res.data.userinfo.id, res.data.userinfo.user_name)
                             Toast.show({ text: 'You have successfully Registered', buttonText: 'okay', duration: 3000 })
                         } else {
                             this.props.navigation.replace('Navigator')
