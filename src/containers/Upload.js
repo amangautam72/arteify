@@ -102,6 +102,11 @@ export default class Upload extends React.Component {
       updateRequestImage(this.state.requestid, image.path).then((res) => {
         console.log("IIIIII : " + JSON.stringify(res))
 
+        if(res.status == "1"){
+          Toast.show({ text: "Image has been uploaded successfully", buttonText: 'okay', duration: 3000 })
+          this.getRequestWork();
+        }
+
       }).catch(err => console.log(err))
 
     })
@@ -293,7 +298,7 @@ export default class Upload extends React.Component {
             // keyboardShouldPersistTaps='always'
             data={this.state.workSample}
             // extraData={this.state}
-            // keyExtractor={this._keyExtractor}
+            keyExtractor={(item,index) => index.toString()}
             renderItem={({ item, index }) => (
 
               item.filetype == 'video' ?

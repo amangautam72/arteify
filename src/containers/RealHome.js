@@ -115,6 +115,7 @@ export default class RealHome extends React.Component {
     );
 
     renderUsersToFollow = ({ item, index }) => (
+        this.state.userid != item.id &&
         <TouchableOpacity
             style={{flex:1,
                 marginBottom: 15, marginTop: 15, borderWidth: 1,

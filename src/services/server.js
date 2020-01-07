@@ -1,6 +1,6 @@
 
-export const SERVER_ADDRESS = "http://192.168.1.45:8086"
-//export const SERVER_ADDRESS = "http://ec2-13-233-172-180.ap-south-1.compute.amazonaws.com:5000"
+//export const SERVER_ADDRESS = "http://192.168.1.45:8086"
+export const SERVER_ADDRESS = "http://ec2-13-233-172-180.ap-south-1.compute.amazonaws.com:5000"
 
 export default {
     LOGIN: SERVER_ADDRESS+'/login',
