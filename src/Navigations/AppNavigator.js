@@ -78,17 +78,19 @@ export default class AppNavigator extends React.Component {
     }
 
     handleBackPress() {
-        // console.log("SCREEEN  === " + JSON.stringify(this.state.currentRoute.routes[this.state.index]))
+        //console.log("SCREEEN  === " + "Index : "+ this.state.index +"   " + JSON.stringify(this.state.currentRoute.routes))
 
         if (this.state.currentRoute.routeName == 'LoginPage') {
             BackHandler.exitApp();
             return true;
-        }else if(this.state.currentRoute.routeName == 'Navigator'){
-            const bottomNavRoute = this.state.currentRoute.routes[this.state.index]
-           if(bottomNavRoute.index === 0){
+        }
+        else if(this.state.currentRoute.routes!=undefined && this.state.currentRoute.routes[this.state.index].routeName == 'Home'){
+            
+            //const bottomNavRoute = this.state.currentRoute.routes[this.state.index]
+           //if(bottomNavRoute.index === 0){
             BackHandler.exitApp();
             return true;
-           }
+           //}
         }
 
     }

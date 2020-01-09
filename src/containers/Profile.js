@@ -327,12 +327,7 @@ class Profile extends React.Component {
 
                 }
 
-                
-
-
                 {this.state.usertype == '2' &&
-
-
                     <View>
 
                         <Text style={{ fontSize: 16, fontWeight: 'bold', padding: 10, paddingTop: 30, backgroundColor: '#F1F1F1' }}>Your Account</Text>

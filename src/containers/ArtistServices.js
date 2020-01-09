@@ -1,8 +1,9 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image, FlatList, AsyncStorage, Alert,TouchableHighlight } from 'react-native'
+import { StyleSheet, Text, View, Image, FlatList, AsyncStorage,
+     Alert, TouchableHighlight, RefreshControl } from 'react-native'
 
 import { Header, Left, Icon, Button, Right, Toast } from 'native-base'
-import { TouchableOpacity, ScrollView,  } from 'react-native-gesture-handler';
+import { TouchableOpacity, ScrollView, } from 'react-native-gesture-handler';
 
 import NetInfo from "@react-native-community/netinfo";
 
@@ -22,6 +23,7 @@ class ArtistServices extends React.Component {
             userid: null,
             userType: '',
             services: [],
+            loading: true
         }
 
     }
@@ -33,26 +35,12 @@ class ArtistServices extends React.Component {
             const userid = await AsyncStorage.getItem('USERID');
             const usertype = await AsyncStorage.getItem('USERTYPE');
 
-            if (userid != null && usertype != null ) {
-                  this.setState({ usertype: usertype, userid: userid })
+            if (userid != null && usertype != null) {
+                this.setState({ usertype: usertype, userid: userid })
 
                 NetInfo.isConnected.fetch().done((isConnected) => {
                     if (isConnected) {
-                        profileInfo(parseInt(userid)).then(res => {
-
-                            console.log("RESPONSE === " + JSON.stringify(res))
-
-                            if (res.status == '1') {
-                                if (Object.keys(res.data).length != 0 && res.data.constructor === Object) {
-                                    this.setState({
-                                        services: res.data.userinfo.postinfo
-                                    })
-                                }
-
-                            }
-
-                        })
-                            .catch((err) => console.log("ERROR : " + err))
+                       this.getServices(userid)
                     }
                     else {
                         Toast.show({ text: 'No internet connection found!- Internet connection required to use this app', buttonText: 'okay', duration: 3000 })
@@ -63,13 +51,9 @@ class ArtistServices extends React.Component {
         } catch (error) {
             // console.error('AsyncStorage#setItem error: ' + error.message);
         }
-
-
-
     }
 
-
-    reloadPage(userid) {
+    getServices(userid){
         profileInfo(parseInt(userid)).then(res => {
 
             console.log("RESPONSE === " + JSON.stringify(res))
@@ -77,17 +61,19 @@ class ArtistServices extends React.Component {
             if (res.status == '1') {
                 if (Object.keys(res.data).length != 0 && res.data.constructor === Object) {
                     this.setState({
-                        services: res.data.userinfo.postinfo
+                        services: res.data.userinfo.postinfo, loading:false
                     })
+                }else{
+                    this.setState({loading:false})
                 }
 
             }
 
         })
-            .catch((err) => console.log("ERROR : " + err))
+            .catch((err) => this.setState({loading:false}))
     }
 
-     onRemovePress(requestId) {
+    onRemovePress(requestId) {
         Alert.alert(
             '',
             'Do you really want to delete this request?',
@@ -99,7 +85,7 @@ class ArtistServices extends React.Component {
                         deleteRequest(requestId).then((res) => {
                             console.log("RESSSS :   " + JSON.stringify(res))
                             if (res.status == '1') {
-                                this.reloadPage(this.state.userid)
+                                this.getServices(this.state.userid)
                             }
                         })
                     },
@@ -153,11 +139,17 @@ class ArtistServices extends React.Component {
         </View>
     )
 
+
+    onRefresh() {
+        this.getServices(this.state.userid)
+       
+    }
+
     render() {
         return (
             <View
                 style={{ flex: 1, }}>
-                <Header androidStatusBarColor={Colors.Darkgrey} style={{ backgroundColor:'#DDDDDD'}}>
+                <Header androidStatusBarColor={Colors.Darkgrey} style={{ backgroundColor: '#DDDDDD' }}>
                     <Left style={{ flexDirection: "row" }}>
                         <Button transparent
                             onPress={() => this.props.navigation.navigate('Profile')}>
@@ -171,12 +163,23 @@ class ArtistServices extends React.Component {
                 </Header>
 
 
-                <FlatList
-                    data={this.state.services}
-                    // extraData={this.state}
-                    keyExtractor={(item, index) => index.toString()}
-                    renderItem={this.renderRequest}
-                />
+
+                <ScrollView
+                refreshControl={
+                    <RefreshControl
+                        refreshing={this.state.loading} 
+                        onRefresh={() => this.onRefresh()}/>
+                        
+                }>
+
+                    <FlatList
+                        data={this.state.services}
+                        // extraData={this.state}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={this.renderRequest}
+                    />
+
+                </ScrollView>
 
 
 

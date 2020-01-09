@@ -51,7 +51,7 @@ class LoginPage extends React.Component {
             } else if (props.loginSuccessful) {
                 
                     if (props.response.is_complete == 1) {
-                        this.props.navigation.navigate('Home')
+                        this.props.navigation.replace('Navigator')
                     } else {
                         this.props.navigation.navigate('AddService')
                     }

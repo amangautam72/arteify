@@ -121,10 +121,21 @@ class ArtistPublicProfile extends React.Component {
                 }}>
 
                 <View style={{ flexDirection: 'row', alignSelf: 'baseline' }}>
-                    <Image
+
+                {this.state.userImage != '' ? 
+                
+                    <Image source={{ uri: SERVER_ADDRESS + '/images/' + this.state.userImage }}
+                    // resizeMode='contain'
+                        style={{ width: 40, height: 40, borderRadius: 20,}}></Image>
+                    : 
+                    <Image source={require('../assets/man.png')}
+                       resizeMode='contain'
+                       style={{ width: 40, height: 40, borderRadius: 20 }}></Image>
+                    }
+                    {/* <Image
                         style={{ width: 40, height: 40, borderRadius: 20, }}
                         source={{ uri: 'https://www.flare.com/wp-content/uploads/2016/01/prof1-600x409.jpg' }}
-                    />
+                    /> */}
 
 
                     <View style={{ marginLeft: 15, flex: 1 }}>
@@ -160,8 +171,39 @@ class ArtistPublicProfile extends React.Component {
                  onPress={() => this.props.navigation.navigate('ArtistRequestBook',
                  {request:item, url:item.url.split(',')})}
                 style={{ flexDirection: 'column', borderRadius: 2, }}>
-                <Image style={{ height: 120, flex: 1 }}
-                    source={{ uri: 'https://news.artnet.com/app/news-upload/2019/02/IMG_5085-768x1024.jpeg' }}></Image>
+                {/* <Image style={{ height: 120, flex: 1 }}
+                    source={{ uri: 'https://news.artnet.com/app/news-upload/2019/02/IMG_5085-768x1024.jpeg' }}></Image> */}
+
+{item.post_data.length > 0 &&
+                item.post_data[0].filetype == 'video' ?
+                <View style={{  height: 175, }}>
+
+                    <TouchableOpacity
+                        onPress={() => this.props.navigation.navigate("VideoPlayer", { videoid: item.post_data[0].video })}
+                        style={{  height: 175, backgroundColor: '#000000' }}>
+                        <WebView
+                            style={{ width: width + 10, alignSelf: 'center', margin: 0, backgroundColor: '#000000' }}
+                            automaticallyAdjustContentInsets={true}
+                            source={{ html: `<iframe frameborder="0" width="100%" height="100%" controls="0" src="https://www.dailymotion.com/embed/video/${item.post_data[0].video}?queue-enable=false&sharing-enable=false&ui-logo=0" allowfullscreen></iframe>` }}
+                        />
+
+                        <View style={{ backgroundColor: 'rgba(0,0,0,0)', position: 'absolute', width: width, height: 400 }}></View>
+                    </TouchableOpacity>
+                    {/* <WebView
+                                style={{ width: width*.9, height: Dimensions.get('window').height }}
+                                automaticallyAdjustContentInsets={true}
+                                source={{ html: `<iframe frameborder="0" width="100%" height="445" controls="0" src="https://www.dailymotion.com/embed/video/${item.post_data[0].video}?queue-enable=false&sharing-enable=false&ui-logo=0" allowfullscreen></iframe>` }}
+                              /> */}
+
+                </View> :
+
+                <Image
+                    resizeMode={'cover'}
+                    style={{  height: 160 }}
+                    source={{ uri: SERVER_ADDRESS + '/images/' + item.post_data[0].image }}
+                />
+            }
+    
 
                 <Text style={{ marginLeft: 10, marginTop: 10, fontSize: 14 }}>{item.title}</Text>
                 <Text style={{ marginLeft: 10, marginBottom: 10, fontWeight: 'bold', fontSize: 14 }}>{item.catname}</Text>

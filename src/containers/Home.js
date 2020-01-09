@@ -112,19 +112,21 @@ export default class Home extends React.Component {
         >
             <View style={{ flex: 1, flexDirection: 'row' }}>
                 <Image
-                    style={{ width: 50, height: 50, borderRadius: 25 }}
-                    source={{ uri: item.userimage != null ? SERVER_ADDRESS + '/' + item.userimage : 'https://www.flare.com/wp-content/uploads/2016/01/prof1-600x409.jpg' }}
+                    style={{ width: 50, height: 50, borderRadius: 25, alignSelf:'center' }}
+                    source={{ uri: item.userimage != null ? SERVER_ADDRESS + '/images/' + item.userimage : 'https://www.flare.com/wp-content/uploads/2016/01/prof1-600x409.jpg' }}
                 />
 
                 <View style={{ flex: 1, paddingLeft: 10 }}>
                     <Text style={{ color: '#1C2833', fontSize: 16, fontWeight: 'bold' }}>{item.title.toUpperCase()}</Text>
                     <Text style={{ fontSize: 12 }}>{item.username}</Text>
+                    <Text style={{ fontSize: 12, position:'absolute',right:10 }}>{item.catname}</Text>
                 </View>
 
                 {/* <Text style={{ textAlign: 'right', alignSelf: 'center', backgroundColor: Colors.appColor, paddingLeft: 10, paddingRight: 10, padding: 5, color: "#FFFFFF", borderRadius: 5 }}>Follow</Text> */}
             </View>
 
             <Text numberOfLines={1} style={{ paddingTop: 10, paddingBottom: 10 }}>{item.description}</Text>
+
 
             {item.post_data.length > 0 &&
                 item.post_data[0].filetype == 'video' ?
@@ -151,8 +153,8 @@ export default class Home extends React.Component {
 
                 <Image
                     resizeMode={'cover'}
-                    style={{ width: width, height: 200 }}
-                    source={{ uri: SERVER_ADDRESS + '/images/' + item.image }}
+                    style={{  height: 160 }}
+                    source={{ uri: SERVER_ADDRESS + '/images/' + item.post_data[0].image }}
                 />
             }
 

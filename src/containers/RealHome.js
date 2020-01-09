@@ -83,11 +83,11 @@ export default class RealHome extends React.Component {
                 }}>
 
                 <View style={{ flexDirection: 'row', alignSelf: 'baseline' }}>
-                    <Image
-                        style={{ width: 40, height: 40, borderRadius: 20, }}
-                        source={{ uri: 'https://www.flare.com/wp-content/uploads/2016/01/prof1-600x409.jpg' }}
-                    />
-
+                <Image
+                style={{ width: 40, height: 40, borderRadius: 20 }}
+                source={{ uri: item.image != null ? SERVER_ADDRESS + '/images/' + item.image : 'https://www.flare.com/wp-content/uploads/2016/01/prof1-600x409.jpg' }}
+            />
+                   
 
                     <View style={{ marginLeft: 15, flex: 1 }}>
                         {/* <Text style={{ fontSize: 14, color: '#000', fontWeight: '700' }}>I will make your party happening</Text> */}
