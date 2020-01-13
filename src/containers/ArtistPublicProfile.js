@@ -140,7 +140,7 @@ class ArtistPublicProfile extends React.Component {
 
                     <View style={{ marginLeft: 15, flex: 1 }}>
                         {/* <Text style={{ fontSize: 14, color: '#000', fontWeight: '700' }}>I will make your party happening</Text> */}
-                        <Text >Gautam Disouza</Text>
+                <Text >{this.state.username}</Text>
                         <Text
                             style={{ fontSize: 12, marginTop: 5, alignSelf: 'baseline' }}>{item.text}</Text>
 

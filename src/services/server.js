@@ -32,6 +32,8 @@ export default {
     SEND_OTP: SERVER_ADDRESS+'/sendotp',
     PAYTM_CHECKSUM: SERVER_ADDRESS+'/paytmss',
     VERIFY_TRANSACTION: SERVER_ADDRESS+'/verifypayment',
-    FEATURE_ARTISTS: SERVER_ADDRESS+'/featurepost'
+    FEATURE_ARTISTS: SERVER_ADDRESS+'/featurepost',
+    FORGOT_PASSWORD: SERVER_ADDRESS+'/forgot'
+
 
 }

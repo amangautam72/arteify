@@ -31,6 +31,7 @@ class Profile extends React.Component {
             flatListVisibility: false,
             searchtext: '',
             username: '',
+            useremail:'',
             updatedName: '',
             userDes: '',
             updatedDes: '',
@@ -127,7 +128,8 @@ class Profile extends React.Component {
                 return
             }else if (Object.keys(props.response).length != 0 && props.response.constructor === Object) {
                 this.setState({
-                    username: props.response.userinfo.user_name, updatedName: props.response.userinfo.user_name,
+                    username: props.response.userinfo.user_name,useremail:props.response.userinfo.email,
+                     updatedName: props.response.userinfo.user_name,
                     image: props.response.userinfo.image != null && props.response.userinfo.image,
                     updatedImage: props.response.userinfo.image != null && props.response.userinfo.image,
                     userDes: props.response.userinfo.description, updatedDes: props.response.userinfo.description,
@@ -279,7 +281,8 @@ class Profile extends React.Component {
                         >
                         </TextInput> */}
                             <Text style={{ color: '#ffffff', fontSize: 16, fontWeight: 'bold' }}>{this.state.updatedName.toUpperCase() + "  "}</Text>
-                            <Text style={{ color: '#ffffff' }}>{this.state.usertype == '2' ? "Seller " : "Buyer "}</Text>
+                            {/* <Text style={{ color: '#ffffff' }}>{this.state.usertype == '2' ? "Seller " : "Buyer "}</Text> */}
+                            <Text style={{ color: '#ffffff' }}>{this.state.useremail}</Text>
 
                         </View>
 

@@ -47,7 +47,7 @@ class LoginPage extends React.Component {
         if (props != this.props) {
 
             if (props.hasError) {
-                Toast.show({ text: "Some Error", buttonText: 'okay', duration: 3000 })
+                Toast.show({ text: props.response, buttonText: 'okay', duration: 3000 })
             } else if (props.loginSuccessful) {
                 
                     if (props.response.is_complete == 1) {
@@ -169,7 +169,7 @@ class LoginPage extends React.Component {
                         style={{ backgroundColor: Colors.appColor, borderRadius: 4, padding: 10 }}>
                         <Text style={{ color: '#fff', fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>{" CONTINUE "}</Text>
                     </TouchableOpacity>
-                    <Text style={{ alignSelf: 'flex-end', paddingTop: 10, fontSize: 12 }}>FORGOT PASSWORD</Text>
+                    <Text onPress={() => this.props.navigation.navigate("ChangePassword")} style={{ alignSelf: 'flex-end', paddingTop: 10, fontSize: 12 }}>FORGOT PASSWORD</Text>
                 </View>
 
                 <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 40 }}>

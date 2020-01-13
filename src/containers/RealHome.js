@@ -3,7 +3,7 @@ import { RefreshControl, StyleSheet, Dimensions, Text, View, Image, FlatList, As
 
 import { Header, Left, Icon, Button, Right } from 'native-base'
 import { ScrollView } from 'react-native-gesture-handler';
-import { getDailyMotionAccess, getFollowingsPost, getTopUsers } from '../services/requests';
+import { getDailyMotionAccess, getFollowingsPost, getTopUsers, getEvents } from '../services/requests';
 import Colors from '../Colors/Colors';
 
 import AutoHeightImage from 'react-native-auto-height-image';
@@ -41,6 +41,7 @@ export default class RealHome extends React.Component {
                 this.setState({ userid: userid })
                 this.followingsPost()
                 this.topUsers()
+                this.getEvents()
 
             }
         } catch (error) {
@@ -70,6 +71,12 @@ export default class RealHome extends React.Component {
                 this.setState({ loading: false })
             }
         }).catch((error) => this.setState({ loading: false }))
+    }
+
+    getEvents(){
+        getEvents().then((res) => {
+            console.log("EVENTS : " + JSON.stringify(res))
+        }).catch((err) => console.log(err))
     }
 
 

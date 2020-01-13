@@ -33,6 +33,8 @@ import Categories from '../containers/Categories';
 import ArtistServices from '../containers/ArtistServices';
 import VerifyUser from '../containers/VerifyUser';
 import BookingSuccess from '../containers/BookingSuccess';
+import ChangePassword from '../containers/ChangePassword';
+import ConfirmPassword from '../containers/ConfirmPassword';
 
 
 export default class AppNavigator extends React.Component {
@@ -136,6 +138,18 @@ const Navigator = createStackNavigator({
     },
     LoginPage: {
         screen: LoginPage,
+        navigationOptions: {
+            header: null
+        }
+    },
+    ChangePassword: {
+        screen: ChangePassword,
+        navigationOptions: {
+            header: null
+        }
+    },
+    ConfirmPassword: {
+        screen: ConfirmPassword,
         navigationOptions: {
             header: null
         }

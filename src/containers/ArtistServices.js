@@ -3,20 +3,15 @@ import { StyleSheet, Text, View, Image, FlatList, AsyncStorage,
      Alert, TouchableHighlight, RefreshControl } from 'react-native'
 
 import { Header, Left, Icon, Button, Right, Toast } from 'native-base'
-import { TouchableOpacity, ScrollView, } from 'react-native-gesture-handler';
+import { ScrollView, } from 'react-native-gesture-handler';
 
 import NetInfo from "@react-native-community/netinfo";
 
-import { connect } from 'react-redux'
-import { fetchData } from '../actions/BookingDataAction';
 import Colors from '../Colors/Colors';
-import moment from 'moment';
+
 import { deleteRequest, profileInfo } from '../services/requests';
 
-
-const listData = ['Live Musician', 'Magician', 'Painter', 'Movie Play', 'Dancer', 'Guitarist', 'Dj']
 class ArtistServices extends React.Component {
-
     constructor(props) {
         super(props)
         this.state = {
