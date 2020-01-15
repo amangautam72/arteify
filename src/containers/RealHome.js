@@ -11,7 +11,12 @@ import { SERVER_ADDRESS } from '../services/server';
 
 const width = Dimensions.get('window').width
 
-const listData = ['Live Musician', 'Magician', 'Dancer']
+const listData = [{des:'',
+ title:'Clowning & Physical Theatre Workshop at The Social House',
+ image:'https://storage.googleapis.com/ehimages/2020/1/7/img_fe59c7177ea7bd27a58cb2dd05304168_1578391093996_processed_original.jpg'},
+ {des:'',
+ title:'Sofar Sounds Show',
+ image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6WMu5lPYhZjZiT5G3WnXTiHh7AVrvUo62SEGmcsoW1sNYmdTmrgxmOKeFyZLpwjcMc57R9pO9-g&s=10'}]
 
 
 export default class RealHome extends React.Component {
@@ -24,8 +29,8 @@ export default class RealHome extends React.Component {
             searchtext: '',
             data: [],
             topUsers: [],
+            events: [],
             loading: true
-
         }
 
     }
@@ -76,6 +81,9 @@ export default class RealHome extends React.Component {
     getEvents(){
         getEvents().then((res) => {
             console.log("EVENTS : " + JSON.stringify(res))
+            if(res.status == "1"){
+                this.setState({events:res.data})
+            }
         }).catch((err) => console.log(err))
     }
 
@@ -181,14 +189,14 @@ export default class RealHome extends React.Component {
         </TouchableOpacity>
     );
 
-    renderEvents = () => (
+    renderEvents = ({item,index}) => (
         <TouchableOpacity
             style={[styles.card, { alignSelf: 'stretch' }]}>
             <Image style={{ height: 120 }}
-                source={{ uri: 'https://news.artnet.com/app/news-upload/2019/02/IMG_5085-768x1024.jpeg' }}></Image>
+                source={{ uri: SERVER_ADDRESS + '/images/' + item.image }}></Image>
 
-            <Text style={{ marginLeft: 10, marginTop: 10, fontSize: 14, fontWeight: 'bold' }}>{"Title"}</Text>
-            <Text style={{ marginLeft: 10, marginBottom: 10, fontSize: 14 }}>{"An event you will love"}</Text>
+            <Text style={{ marginLeft: 10, marginTop: 10, fontSize: 14, fontWeight: 'bold', color:"#000000" }}>{item.title}</Text>
+            {/* <Text style={{ marginLeft: 10, marginBottom: 10, fontSize: 14 }}>{item.des}</Text> */}
 
         </TouchableOpacity>
     )
@@ -221,6 +229,13 @@ export default class RealHome extends React.Component {
                     </Left>
 
                     <Right>
+                        <Button
+                            style={{ padding: 10 }}
+                            transparent
+                            onPress={() => this.props.navigation.navigate('Categories')}>
+                            <Icon style={{ color: Colors.Darkgrey }} name='menu' />
+
+                        </Button>
                     </Right>
                 </Header>
 
@@ -272,14 +287,14 @@ export default class RealHome extends React.Component {
                         renderItem={this.renderItem}
                     />
 
-                    {/* <Text style={{ marginTop: 10, paddingLeft: 10, paddingTop: 10, fontSize: 16, fontWeight: 'bold' }}>Coming Events</Text>
+                    <Text style={{ marginTop: 10, paddingLeft: 10, paddingTop: 10, fontSize: 16, fontWeight: 'bold' }}>Coming Events</Text>
                     <FlatList
                         // keyboardShouldPersistTaps='always'
-                        data={listData}
+                        data={this.state.events}
                         // extraData={this.state}
                         // keyExtractor={this._keyExtractor}
                         renderItem={this.renderEvents}
-                    /> */}
+                    />
 
                 </ScrollView>
 
@@ -290,7 +305,7 @@ export default class RealHome extends React.Component {
 
 const styles = StyleSheet.create({
     card: {
-        margin: 10,
+        margin: 10,paddingBottom:10,
         elevation: 5, borderWidth: 1, borderColor: '#ddd', borderRadius: 3,
         backgroundColor: '#fff', shadowColor: "#ddd",
         shadowOpacity: 0.8, shadowRadius: 2,

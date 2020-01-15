@@ -70,6 +70,40 @@ export const forgotPassword = async (mail) => {
         });
 }
 
+
+export const confirmPassword = async (mob,otp,password) => {
+
+    var params = {
+        mobile: mob,
+        otp: otp,
+        password: password,
+    }
+
+    var formBody = [];
+    for (var property in params) {
+      var encodedKey = encodeURIComponent(property);
+      var encodedValue = encodeURIComponent(params[property]);
+      formBody.push(encodedKey + "=" + encodedValue);
+    }
+    formBody = formBody.join("&");
+
+    console.log("PARAMS  : " + JSON.stringify(formBody))
+
+    return fetch(Server.CONFIRM_PASSWORD, {
+        method: "POST",
+        headers: {
+            // Accept: 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formBody
+
+    }).then((response) => response.json())
+    
+        .catch((error) => {
+            console.error(error);
+        });
+}
+
 export const registerRequest = async(otp,username,email,password,description,locationid,number, usertype) => {
     const fcmToken = await firebase.messaging().getToken();
     var params = {

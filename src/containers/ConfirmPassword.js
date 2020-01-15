@@ -6,7 +6,7 @@ import { Header, Left, Icon, Button, Right, Toast } from 'native-base'
 import NetInfo from "@react-native-community/netinfo";
 
 import Colors from '../Colors/Colors';
-import { registerRequest } from '../services/requests'
+import { registerRequest, confirmPassword } from '../services/requests'
 
 
 var radio_props = [
@@ -22,11 +22,16 @@ class ConfirmPassword extends React.Component {
             otp: '',
             email: this.props.navigation.getParam('email'),
             password: this.props.navigation.getParam('password'),
+            mobile: this.props.navigation.getParam('mobile'),
         }
 
     }
 
     SignUp() {
+        let otp = this.state.otp
+        let password = this.state.password
+        let mobile = this.state.mobile
+        
         if (this.state.otp === '') {
             Toast.show({
                 text: 'Please enter OTP',
@@ -36,31 +41,17 @@ class ConfirmPassword extends React.Component {
             return;
         }
 
-        
-        let email = this.state.email
-        let password = this.state.password
-        
         NetInfo.isConnected.fetch().done((isConnected) => {
             if (isConnected) {
-                registerRequest(this.state.otp, username, email, password, description, locationid, number, usertype).then(res => {
+                confirmPassword(mobile, otp, password).then(res => {
 
                     console.log("RESPONSE === " + JSON.stringify(res))
 
                     if (res.status == '1') {
-                        if (usertype == "2") {
-                            this.props.navigation.replace('AddService')
-                            this.storeValues(res.data.userinfo.usertype, 
-                                res.data.userinfo.id, res.data.userinfo.user_name)
-                            Toast.show({ text: 'You have successfully Registered', buttonText: 'okay', duration: 3000 })
-                        } else {
-                            this.props.navigation.replace('Navigator')
-                            this.storeValues(res.data.userinfo.usertype, 
-                                res.data.userinfo.id, res.data.userinfo.user_name)
-                                
-                        }
+                        Toast.show({ text: 'Password has been changed successfully', buttonText: 'okay', duration: 3000 })
+                        this.props.navigation.goBack()
                     } else {
-                        Toast.show({ text: res.message, buttonText: 'okay', duration: 3000 })
-
+                        // Toast.show({ text: res.message, buttonText: 'okay', duration: 3000 })
                         // alert(res.message)
                     }
 

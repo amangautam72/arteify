@@ -33,7 +33,8 @@ export default {
     PAYTM_CHECKSUM: SERVER_ADDRESS+'/paytmss',
     VERIFY_TRANSACTION: SERVER_ADDRESS+'/verifypayment',
     FEATURE_ARTISTS: SERVER_ADDRESS+'/featurepost',
-    FORGOT_PASSWORD: SERVER_ADDRESS+'/forgot'
+    FORGOT_PASSWORD: SERVER_ADDRESS+'/forgot',
+    CONFIRM_PASSWORD: SERVER_ADDRESS+'/verifychange'
 
 
 }

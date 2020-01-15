@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { View, Modal, StyleSheet, ActivityIndicator } from 'react-native'
+import Colors from '../Colors/Colors'
 
 
 export const Loader = (props) => {
@@ -21,7 +22,7 @@ export const Loader = (props) => {
                     <View
                         style={styles.modal}>
 
-                        <ActivityIndicator size='large' color='blue'></ActivityIndicator>
+                        <ActivityIndicator size='large' color={Colors.appColor}></ActivityIndicator>
                     </View>
 
                 </View>

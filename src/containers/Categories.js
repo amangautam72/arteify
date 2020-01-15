@@ -8,8 +8,8 @@ import GridList from 'react-native-grid-list';
 import { Loader } from '../components/Loader'
 import Colors from '../Colors/Colors';
 import { SERVER_ADDRESS } from '../services/server';
+import { categories } from '../services/requests';
 
-const listData = ['Live Musician', 'Magician', 'Painter', 'Movie Play', 'Dancer', 'Guitarist', 'Dj']
 export default class Categories extends React.Component {
 
     constructor(props) {
@@ -19,8 +19,8 @@ export default class Categories extends React.Component {
             postText: '',
             flatListVisibility: false,
             data: [],
-            isLoading: false,
-            categories: this.props.navigation.getParam('categories'),
+            isLoading: true,
+            categories: [],
         }
 
     }
@@ -33,13 +33,27 @@ export default class Categories extends React.Component {
 
             console.log("USERID :  " + userid)
             if (userid != null) {
-  
                 this.setState({userid: userid})
-
             }
         } catch (error) {
             // console.error('AsyncStorage#setItem error: ' + error.message);
         } 
+
+    }
+
+    componentWillMount(){
+        categories().then(res => {
+            console.log("RESSSSS  :  " + JSON.stringify(res))
+
+            if (res.status == '1') {
+                var categories = res.data.category
+                this.setState({isLoading:false, categories:categories })
+            } else {
+                this.setState({ isLoading: false })
+            }
+        })
+        .catch((err) => this.setState({ isLoading: false }))
+
 
     }
 

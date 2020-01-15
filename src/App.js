@@ -23,7 +23,6 @@ const store = configureStore()
 
 export default class App extends Component {
 
-
   componentDidMount() {
     this.checkPermission()
     this.createNotificationListeners(); //add this line

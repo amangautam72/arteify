@@ -196,7 +196,7 @@ export default class Home extends React.Component {
                         <Button
                             style={{ padding: 10 }}
                             transparent
-                            onPress={() => this.props.navigation.navigate('Categories', { categories: this.state.categories })}>
+                            onPress={() => this.props.navigation.navigate('Categories')}>
                             <Icon style={{ color: Colors.Darkgrey }} name='menu' />
 
                         </Button>

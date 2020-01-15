@@ -60,7 +60,7 @@ class ChangePassword extends React.Component {
         forgotPassword(email).then((res) => {
             console.log("RESPONSE : " + JSON.stringify(res))
             if(res.status == "1"){
-                this.props.navigation.navigate("ConfirmPassword", {email: email,password:password})
+                this.props.navigation.replace("ConfirmPassword", {email: email,password:password,mobile:res.data})
             }
         }).catch((err) => console.log(err))
 
