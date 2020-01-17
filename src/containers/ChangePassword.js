@@ -57,18 +57,26 @@ class ChangePassword extends React.Component {
             return;
         }
 
+        this.setState({loading:true})
+
         forgotPassword(email).then((res) => {
             console.log("RESPONSE : " + JSON.stringify(res))
             if(res.status == "1"){
+                this.setState({loading:false}) 
                 this.props.navigation.replace("ConfirmPassword", {email: email,password:password,mobile:res.data})
             }
-        }).catch((err) => console.log(err))
+            else{
+                this.setState({loading:false}) 
+            }
+        }).catch((err) => this.setState({loading:false}) )
 
     }
 
     render() {
         return (
             <SafeAreaView style={{ flex: 1, padding: 10, backgroundColor: '#fff' }}>
+
+                {this.state.isLoading && <Loader></Loader>}   
 
                 <Image style={{ width: 80, height: 80, marginTop: 10, alignSelf: 'center' }}
                     source={require('../assets/applogo.png')}></Image>
