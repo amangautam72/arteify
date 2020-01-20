@@ -2,7 +2,8 @@ import React from 'react'
 import {
     Text, View, Image, FlatList, StyleSheet, Alert, TextInput, SafeAreaView,
     AsyncStorage, TouchableOpacity, RefreshControl, BackHandler, ImageBackground,
-    Linking
+    Linking,
+    Share
 } from 'react-native'
 
 import { Icon, Toast } from 'native-base'
@@ -225,6 +226,15 @@ class Profile extends React.Component {
           });
     }
 
+    invite() {
+
+        Share.share({
+            message: `Hi from Arteify, \n Hire amazing artists on the go, click to install \n https://play.google.com/store/apps/details?id=com.arteify`
+        }).then(result => console.log(result))
+        .catch(err => console.log(err))
+        
+    }
+
     render() {
         return (
             <ScrollView
@@ -402,7 +412,7 @@ class Profile extends React.Component {
                 <View style={{ height: 1, backgroundColor: '#DDDDDD' }}></View>
 
                 <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate('Explore ')}
+                    onPress={() => this.invite()}
                     style={{ flexDirection: 'row', padding: 10, paddingTop: 12, paddingBottom: 12 }}>
                     <Image source={require('../assets/invite.png')}
                         resizeMode='contain'

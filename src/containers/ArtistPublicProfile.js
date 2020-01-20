@@ -71,6 +71,8 @@ class ArtistPublicProfile extends React.Component {
 
         let response = props.response
 
+        console.log("PROPS : " + JSON.stringify(response))
+
         if (props.response != this.props.response) {
             if (props.hasError) {
                 Toast.show({ text: 'Something went wrong', buttonText: 'okay', duration: 3000 })
@@ -149,7 +151,7 @@ class ArtistPublicProfile extends React.Component {
                 </View>
 
 
-                <View style={{ flexDirection: 'row', marginTop: 15 }}>
+                {/* <View style={{ flexDirection: 'row', marginTop: 15 }}>
                     <TouchableOpacity style={{
                         paddingLeft: 5, paddingRight: 10,
                     }}><Text style={{ color: Colors.appColor }}>Like</Text></TouchableOpacity>
@@ -158,7 +160,7 @@ class ArtistPublicProfile extends React.Component {
                         paddingLeft: 5, paddingRight: 10,
                         marginLeft: 10
                     }}><Text style={{ color: Colors.appColor }}>Comment</Text></TouchableOpacity>
-                </View>
+                </View> */}
 
             </TouchableOpacity>
         </View>
@@ -173,8 +175,10 @@ class ArtistPublicProfile extends React.Component {
                 style={{ flexDirection: 'column', borderRadius: 2, }}>
                 {/* <Image style={{ height: 120, flex: 1 }}
                     source={{ uri: 'https://news.artnet.com/app/news-upload/2019/02/IMG_5085-768x1024.jpeg' }}></Image> */}
+                    
 
-{item.post_data.length > 0 &&
+            {
+                item.post_data != null ? item.post_data.length > 0  &&
                 item.post_data[0].filetype == 'video' ?
                 <View style={{  height: 175, }}>
 
@@ -202,6 +206,7 @@ class ArtistPublicProfile extends React.Component {
                     style={{  height: 160 }}
                     source={{ uri: SERVER_ADDRESS + '/images/' + item.post_data[0].image }}
                 />
+                : null
             }
     
 
@@ -290,9 +295,7 @@ class ArtistPublicProfile extends React.Component {
                 <Text style={{ paddingLeft: 10, paddingRight: 10, paddingTop: 20, fontWeight: 'bold' }}>{'RECENT POSTS OF ' + this.state.username}</Text>
 
                 <FlatList
-
                     // keyboardShouldPersistTaps='always'
-
                     data={this.state.postList}
                     // extraData={this.state}
                     // keyExtractor={this._keyExtractor}

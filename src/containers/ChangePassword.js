@@ -63,6 +63,7 @@ class ChangePassword extends React.Component {
             console.log("RESPONSE : " + JSON.stringify(res))
             if(res.status == "1"){
                 this.setState({loading:false}) 
+                Toast.show({ text: "An otp has been sent to your registered number", buttonText: 'okay', duration: 3000 })
                 this.props.navigation.replace("ConfirmPassword", {email: email,password:password,mobile:res.data})
             }
             else{

@@ -34,7 +34,8 @@ export default {
     VERIFY_TRANSACTION: SERVER_ADDRESS+'/verifypayment',
     FEATURE_ARTISTS: SERVER_ADDRESS+'/featurepost',
     FORGOT_PASSWORD: SERVER_ADDRESS+'/forgot',
-    CONFIRM_PASSWORD: SERVER_ADDRESS+'/verifychange'
+    CONFIRM_PASSWORD: SERVER_ADDRESS+'/verifychange',
+    LIKE_UNLIKE: SERVER_ADDRESS+'/likeunlike'
 
 
 }

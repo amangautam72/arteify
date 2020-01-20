@@ -672,6 +672,37 @@ export const createPost = (userid,postText) => {
         });
 }
 
+export const likeUnlike = (userid,postid) => {
+    var params = {
+        user_id: parseInt(userid),
+        post_id: postid
+    }
+
+    var formBody = [];
+    for (var property in params) {
+      var encodedKey = encodeURIComponent(property);
+      var encodedValue = encodeURIComponent(params[property]);
+      formBody.push(encodedKey + "=" + encodedValue);
+    }
+    formBody = formBody.join("&");
+
+    console.log("PARAMS  : " + JSON.stringify(formBody))
+
+    return fetch(Server.LIKE_UNLIKE, {
+        method: "POST",
+        headers: {
+            // Accept: 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formBody
+
+    }).then((response) => response.json())
+    
+        .catch((error) => {
+            console.error(error);
+        });
+}
+
 export const followUnfollow = (follower_id,following_id,follow_type) => {
     var params = {
         user_id: parseInt(follower_id),
