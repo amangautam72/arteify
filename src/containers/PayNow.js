@@ -43,7 +43,8 @@ class PayNow extends React.Component {
             value: "0",
             amount: this.props.navigation.getParam('amount'),
             bookingid: this.props.navigation.getParam('bookingid'),
-            artistid: this.props.navigation.getParam('artistid')
+            artistid: this.props.navigation.getParam('artistid'),
+            contact: this.props.navigation.getParam('contact')
         }
 
     }
@@ -96,7 +97,7 @@ class PayNow extends React.Component {
                     text: 'You have booked the artist successfully',
                     buttonText: 'okay', duration: 3000
                 })
-                this.props.navigation.replace("BookingSuccess", { amount: this.state.amount, bookingid: this.state.bookingid, contact:paytmConfig.mobile })
+                this.props.navigation.replace("BookingSuccess", { amount: this.state.amount, bookingid: this.state.bookingid, contact:this.state.contact })
             }
         }).catch((error) => {
             console.log(error)
@@ -160,7 +161,7 @@ class PayNow extends React.Component {
 
     runTransaction(amount) {
         const details = {
-            mode: 'Staging', // 'Staging' or 'Production'
+            mode: 'Production', // 'Staging' or 'Production'
             MID: paytmConfig.MID,
             INDUSTRY_TYPE_ID: paytmConfig.INDUSTRY_TYPE_ID,
             WEBSITE: paytmConfig.WEBSITE,

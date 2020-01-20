@@ -142,7 +142,7 @@ class Bookings extends React.Component {
             {this.state.userid != item.artistid && item.status == 2 && <View style={{flexDirection:'row',paddingTop:5, alignSelf:'flex-end'}}>
                 <Text style={{alignSelf:'center', paddingRight:5}}>To confirm this booking</Text>
                 <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('PayNow',{amount: item.price, bookingid: item.id, artistid:item.artistid})}
+                onPress={() => this.props.navigation.navigate('PayNow',{amount: item.price, bookingid: item.id, artistid:item.artistid, contact: item.artistno})}
                 style={{backgroundColor:Colors.green, borderRadius:3, padding:5}}>
                     <Text style={{color:"#ffffff"}}>Pay Now</Text>
                 </TouchableOpacity>
