@@ -641,29 +641,42 @@ export const getRequestWork = (requestid) => {
 }
 
 
-export const createPost = (userid,postText) => {
+export const createPost = (userid,postText,image) => {
     var params = {
         user_id: parseInt(userid),
         text: postText
     }
 
-    var formBody = [];
-    for (var property in params) {
-      var encodedKey = encodeURIComponent(property);
-      var encodedValue = encodeURIComponent(params[property]);
-      formBody.push(encodedKey + "=" + encodedValue);
+    var formData = new FormData();
+    
+    for (var k in params) {
+        formData.append(k, params[k]);
     }
-    formBody = formBody.join("&");
 
-    console.log("PARAMS  : " + JSON.stringify(formBody))
+    formData.append('image', {
+      uri: image,
+      name: 'photo',
+      type: 'image/jpeg',
+    });
+
+    // var formBody = [];
+    // for (var property in params) {
+    //   var encodedKey = encodeURIComponent(property);
+    //   var encodedValue = encodeURIComponent(params[property]);
+    //   formBody.push(encodedKey + "=" + encodedValue);
+    // }
+    // formBody = formBody.join("&");
+
+    console.log("PARAMS  : " + JSON.stringify(formData))
 
     return fetch(Server.CREATE_POST, {
         method: "POST",
         headers: {
             // Accept: 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded',
+            //'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'multipart/form-data',
         },
-        body: formBody
+        body: formData
 
     }).then((response) => response.json())
     

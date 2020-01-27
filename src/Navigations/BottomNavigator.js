@@ -9,6 +9,8 @@ import CreatePost from '../containers/CreatePost';
 import NotificationPanel from '../containers/NotificationPanel';
 import Profile from '../containers/Profile';
 
+import { Icon } from 'native-base'
+
 
 const TabBarComponent = (props) => (<BottomTabBar {...props} />);
 
@@ -32,6 +34,7 @@ export default bottomTabs = createBottomTabNavigator({
         screen: Home,
         navigationOptions: {
             tabBarIcon: <Image style={{ height: 25, width: 25 }} source={require('../assets/artist.png')}></Image>,
+            
             //tabBarVisible: isLogIn()
         }
     },

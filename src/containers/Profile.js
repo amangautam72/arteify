@@ -147,7 +147,7 @@ class Profile extends React.Component {
             <TouchableOpacity
 
                 style={{
-                    borderRadius: 2
+                    borderRadius: 2, flex:1
                 }}>
 
                 <View style={{ flexDirection: 'row', }}>
@@ -156,20 +156,39 @@ class Profile extends React.Component {
                         source={{ uri: SERVER_ADDRESS + '/images/' + this.state.image }}
                     />
 
-                    <View style={{ marginLeft: 15, flex: 1 }}>
+                    <View style={{ marginLeft: 15, flex: 1, flexDirection:'column' }}>
                         {/* <Text style={{ fontSize: 14, color: '#000', fontWeight: '700' }}>I will make your party happening</Text> */}
                         <Text style={{ fontWeight: 'bold' }}>{this.state.username}</Text>
                         <Text
                             style={{ fontSize: 12, marginTop: 5, alignSelf: 'baseline' }}>{item.text}</Text>
-
-
+                         
                     </View>
+
+                    <Image
+                            resizeMode='cover'
+                            style={{ width: 280, borderRadius: 20, flex:1 }}
+                            source={{ uri: SERVER_ADDRESS + '/images/' + item.image }}
+                        />
+
+                    
                 </View>
 
+                {item.image != null && 
+                        <Image
+                            resizeMode='cover'
+                            style={{height: 200, borderRadius: 20, flex:1 }}
+                            source={{ uri: SERVER_ADDRESS + '/images/' + item.image }}
+                        />
+                }
+
+                
                 <View style={{ height: 1, marginTop: 10, backgroundColor: '#ddd' }}></View>
 
+               
 
             </TouchableOpacity>
+
+           
         </View>
     );
 

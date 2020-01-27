@@ -8,6 +8,8 @@ import { createPost } from '../services/requests';
 import { Loader } from '../components/Loader'
 import Colors from '../Colors/Colors';
 
+import ImagePickerr from 'react-native-image-crop-picker';
+
 const listData = ['Live Musician', 'Magician', 'Painter', 'Movie Play', 'Dancer', 'Guitarist', 'Dj']
 export default class CreatePost extends React.Component {
 
@@ -18,7 +20,9 @@ export default class CreatePost extends React.Component {
             postText: '',
             flatListVisibility: false,
             data: [],
-            isLoading: false
+            isLoading: false,
+            imageuri:'',
+            video:''
         }
 
     }
@@ -38,10 +42,33 @@ export default class CreatePost extends React.Component {
         } catch (error) {
             // console.error('AsyncStorage#setItem error: ' + error.message);
         }
-
-        
-
     }
+
+    launchGallery() {
+        ImagePickerr.openPicker({
+            width: 700,
+            height: 500,
+            mediaType: "photo",
+            cropping: true,
+            //multiple: true,
+            //compressImageQuality: 1,
+    
+        }).then((image) => {
+
+            this.setState({imageuri: image.path})
+
+        //   updateRequestImage(this.state.requestid, image.path).then((res) => {
+        //     console.log("IIIIII : " + JSON.stringify(res))
+    
+        //     if(res.status == "1"){
+        //       Toast.show({ text: "Image has been uploaded successfully", buttonText: 'okay', duration: 3000 })
+        //       this.getRequestWork();
+        //     }
+    
+        //   }).catch(err => console.log(err))
+    
+        })
+      }
 
 
     updatePost(){
@@ -56,7 +83,7 @@ export default class CreatePost extends React.Component {
 
         this.setState({isLoading: true})
 
-        createPost(this.state.userid,this.state.postText).then((res) => {
+        createPost(this.state.userid,this.state.postText, this.state.imageuri).then((res) => {
             console.log("RESS  : "  +  JSON.stringify(res))
             if(res.status == '1'){
                 Toast.show({
@@ -64,8 +91,8 @@ export default class CreatePost extends React.Component {
                     buttonText: 'okay', duration: 3000
                 })
 
-                this.setState({postText: ''})
-                this.setState({isLoading: false})
+                this.setState({postText: '',imageuri:'', isLoading:false})
+                
             }else{
                 this.setState({isLoading: false})
             }
@@ -84,13 +111,6 @@ export default class CreatePost extends React.Component {
                 <Header androidStatusBarColor={Colors.Darkgrey} 
                 style={{ backgroundColor:'#DDDDDD'}}>
                     <Left style={{flex:1,flexDirection:'row',paddingLeft:10}}>
-                        {/* <Button 
-                        style={{padding:10}}
-                         transparent
-                            onPress={() => this.props.navigation.openDrawer()}>
-                            <Icon name='menu' />
-                           
-                        </Button> */}
 
                         <Image
                             style={{ width:100}}
@@ -103,22 +123,6 @@ export default class CreatePost extends React.Component {
                     
                     <Right></Right>
                 </Header>
-
-                {/* <ImageBackground 
-                    source={require('../assets/backdrop.jpg')}
-                    style={{ flexDirection: 'row', paddingTop: 5, paddingBottom: 5 }}>
-                     <Button 
-                        style={{padding:5}}
-                         transparent
-                            onPress={() => this.props.navigation.openDrawer()}>
-                            <Icon name='menu' />
-                           
-                        </Button>
-
-                        <Text style={{ fontSize:18,padding:10, color:'#fff',fontWeight:'bold' }}>{'Update Post  '}</Text>
-
-                 </ImageBackground> */}
-                
 
 
                 <ScrollView>
@@ -142,13 +146,34 @@ export default class CreatePost extends React.Component {
                         </TextInput>
                     </View>
 
+                   {this.state.imageuri != '' && 
+                    
+                    <View>
+                        <Image
+                            resizeMode={'cover'}
+                            style={{  height: 280, margin:20, borderRadius:3 }}
+                            source={{ uri: this.state.imageuri }}
+                        />
 
-                    <TouchableOpacity style={{
+                        <Icon 
+                        onPress={() => this.setState({imageuri: ''})}
+                        style={{ alignSelf: 'center', paddingLeft: 15, paddingRight: 10, position:'absolute', right:30,top:30 }} 
+                        name="close"></Icon>
+
+                    </View>    
+
+                    } 
+
+
+                    {this.state.imageuri == '' && 
+                    <TouchableOpacity 
+                    onPress={this.launchGallery.bind(this)}
+                    style={{
                         height: 100, justifyContent: 'center',borderWidth:2,borderColor:Colors.GoogleLogin, margin: 20,
                         marginLeft: 20, marginRight: 20, marginTop: 20, borderRadius: 5
                     }}>
                         <Text style={{ textAlign: 'center', color: Colors.GoogleLogin, fontSize: 15, fontWeight: 'bold' }}>Upload Photos or Videos</Text>
-                    </TouchableOpacity> 
+                    </TouchableOpacity> }
 
                 </ScrollView>
 
@@ -177,10 +202,7 @@ const styles = StyleSheet.create({
         }
     },
     modal: {
-
         marginLeft: 50, marginRight: 50, marginTop: 60, marginBottom: 60,
         backgroundColor: '#fff', padding: 15, paddingLeft: 20, paddingRight: 20
-
-
     },
 })
