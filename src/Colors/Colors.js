@@ -5,6 +5,7 @@ export default  {
     GoogleLogin: '#dd4b39',
     shadowColor: 'd3d3d3',
     appColor: '#5DA9DA',
+    Grey:"#808B96",
     redColor: '#DE461D',
     purple2: '#5B42B3',
     strokeColor: '#C4BDE5',

@@ -89,16 +89,16 @@ export default class HomeStart extends React.Component {
 
                 <Text
                     onPress={() => this.props.navigation.navigate('LoginPage')}
-                    style={{
-                        position: 'absolute', left: 20, bottom: 30,
+                    style={{padding:10,
+                        position: 'absolute', left: 10, bottom: 20,
                         fontSize: 15, fontWeight: 'bold', color: '#505050' 
                     }}>
                     {"SIGN IN "}</Text>
 
                 <Text
                     onPress={() => this.props.navigation.navigate('SignUp')}
-                    style={{
-                        position: 'absolute', right: 20, bottom: 30,
+                    style={{padding:10,
+                        position: 'absolute', right: 10, bottom: 20,
                         fontSize: 15, fontWeight: 'bold', color: '#505050'
                     }}>SKIP</Text>
 

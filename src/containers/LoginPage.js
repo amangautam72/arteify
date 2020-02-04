@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { View, StyleSheet, Text, Image, AsyncStorage, TouchableOpacity, BackHandler } from 'react-native'
+import { TextInput, View, StyleSheet, Text, Image, AsyncStorage, TouchableOpacity, BackHandler } from 'react-native'
 //import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-navigation';
 
@@ -49,14 +49,14 @@ class LoginPage extends React.Component {
             if (props.hasError) {
                 Toast.show({ text: props.response, buttonText: 'okay', duration: 3000 })
             } else if (props.loginSuccessful) {
-                
-                    if (props.response.is_complete == 1) {
-                        this.props.navigation.replace('Navigator')
-                    } else {
-                        this.props.navigation.navigate('AddService')
-                    }
-                
-               
+
+                if (props.response.is_complete == 1) {
+                    this.props.navigation.replace('Navigator')
+                } else {
+                    this.props.navigation.navigate('AddService')
+                }
+
+
                 Toast.show({ text: 'You have successfully logged In', buttonText: 'okay', duration: 3000 })
             }
         }
@@ -94,82 +94,62 @@ class LoginPage extends React.Component {
 
                 {this.props.isLoading && <Loader></Loader>}
 
-                <Image style={{ width: 80, height: 80, marginTop: 10, alignSelf: 'center' }}
-                    source={require('../assets/applogo.png')}></Image>
+                {/* <Image style={{ width: 80, height: 80, marginTop: 10, alignSelf: 'center' }}
+                    source={require('../assets/applogo.png')}></Image> */}
                 {/* <Text style={{ padding: 10, alignSelf:'center' }}>Welcome to Arteify</Text> */}
 
-                <Text style={{ paddingTop: 10, alignSelf: 'center', fontWeight: 'bold' }}>{' Sign in to Arteify '}</Text>
+                {/* <Text style={{ paddingTop: 10, alignSelf: 'center', fontWeight: 'bold' }}>{' Sign in to Arteify '}</Text> */}
+                <Image style={{width:140,marginTop:50, alignSelf:'center' }}
+                        resizeMode='contain'
+                        source={require('../assets/title.png')}></Image>
 
-                {/* <View style={{ flexDirection: 'row' }}>
-                    <View style={{ flex: 1, backgroundColor: '#3b5998', borderRadius: 4, margin: 10 }}>
-                        <TouchableOpacity style={{ alignSelf: 'center', padding: 10 }}>
-                            <Text style={{ color: '#fff', fontSize: 14, fontWeight: 'bold' }}>{" FACEBOOK "}</Text>
-                        </TouchableOpacity>
+                <Text style={{marginLeft:10,marginTop:50, fontSize:18,color:Colors.Darkgrey, fontWeight:'bold'}}>LOGIN</Text>
+                <Text style={{marginLeft:10, color:Colors.Grey}}>Please sign in to continue</Text>
+                
 
-                    </View>
-                    <View style={{ flex: 1, backgroundColor: '#ea4335', borderRadius: 4, margin: 10 }}>
-                        <TouchableOpacity style={{ alignSelf: 'center', padding: 10 }}>
-                            <Text style={{ color: '#fff', fontSize: 14, fontWeight: 'bold' }}>{"GOOGLE  "}</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View> */}
+                <View style={{ marginLeft: 10, marginRight: 10,marginTop:20, flexDirection: 'row', alignItems: 'center' }}>
 
-{/* 
-               <View style={{ flexDirection: 'row', marginLeft: 10, marginRight: 10 }}>
-                    <Image style={{width:20,height:20, marginTop:10,alignSelf:'center', marginLeft:10,marginRight:10 }}
-                            source={require('../assets/user.png')}></Image>
-                    <TextField
+                    <Image style={{ width: 20, height: 20 }}
+                        source={require('../assets/mail.png')}></Image>
+
+                    <TextInput
+                        style={{marginLeft:10, height: 40, borderBottomWidth:1,borderBottomColor:Colors.appColor, flex:1}}
                         autoCapitalize='none'
-                        label='Email or username'
-                        value={this.state.email}
+                        placeholder="Email"
                         onChangeText={(email) => this.setState({ email })}
-                    />
-                </View>  */}
-
-                <View style={{ marginLeft: 10, marginRight: 10 }}>
-                    <TextField
-                        autoCapitalize='none'
-                        label='Email or username'
                         value={this.state.email}
-                        onChangeText={(email) => this.setState({ email })}
                     />
                 </View>
 
-                {/* <View style={{ flexDirection: 'row' }}>
-                    <Image style={{ width: 20, height: 20, marginTop: 10, alignSelf: 'center', marginLeft: 10, marginRight: 10 }}
-                        source={require('../assets/user.png')}></Image>
 
-                    <View style={{ marginLeft: 10, marginRight: 10 }}>
-                        <TextField
+                <View style={{marginTop:20, marginLeft: 10, marginRight: 10,flexDirection: 'row', alignItems: 'center' }}>
 
-                            autoCapitalize='none'
-                            label='Email or username'
-                            value={this.state.email}
-                            onChangeText={(email) => this.setState({ email })}
-                        />
-                    </View>
-                </View> */}
+                <Image style={{ width: 20, height: 20 }}
+                        source={require('../assets/lock.png')}></Image>
 
 
-                <View style={{ marginLeft: 10, marginRight: 10 }}>
-                    <TextField
-                        autoCapitalize='none'
-                        label='Password'
-                        value={this.state.password}
+                <TextInput
+                        style={{marginLeft:10, height: 40, borderBottomWidth:1,borderBottomColor:Colors.appColor, flex:1}}
+                        placeholder="Password"
+                        secureTextEntry={true}
                         onChangeText={(password) => this.setState({ password })}
+                        value={this.state.password}
                     />
+
+
                 </View>
 
 
-
+                <Text onPress={() => this.props.navigation.navigate("ChangePassword")} 
+                style={{ alignSelf: 'flex-end',fontWeight:'bold', paddingTop: 10,paddingRight:10, fontSize: 12 }}>FORGOT PASSWORD?  </Text>
 
                 <View style={{ marginTop: 50, margin: 10, }}>
                     <TouchableOpacity
                         onPress={this.signIn.bind(this)}
                         style={{ backgroundColor: Colors.appColor, borderRadius: 4, padding: 10 }}>
-                        <Text style={{ color: '#fff', fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>{" CONTINUE "}</Text>
+                        <Text style={{ color: '#fff', fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>{" LOGIN "}</Text>
                     </TouchableOpacity>
-                    <Text onPress={() => this.props.navigation.navigate("ChangePassword")} style={{ alignSelf: 'flex-end', paddingTop: 10, fontSize: 12 }}>FORGOT PASSWORD</Text>
+                    
                 </View>
 
                 <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 40 }}>

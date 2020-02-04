@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { View, Text, Image,AsyncStorage,TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, Image, AsyncStorage, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
 
 import { SafeAreaView } from 'react-navigation';
 
@@ -31,37 +31,37 @@ class SignUp extends React.Component {
         }
     }
 
-    async componentDidMount(){
+    async componentDidMount() {
         try {
             const userType = await AsyncStorage.getItem('USERTYPE');
-            console.log("------------   :   "+userType)
-            this.setState({usertype: userType})
-         } catch (error) {
-             // console.error('AsyncStorage#setItem error: ' + error.message);
-         }
+            console.log("------------   :   " + userType)
+            this.setState({ usertype: userType })
+        } catch (error) {
+            // console.error('AsyncStorage#setItem error: ' + error.message);
+        }
     }
 
     componentWillReceiveProps(props) {
 
         console.log("PROPS: : " + JSON.stringify(props))
         console.log("THIS.PROPS: : " + JSON.stringify(this.props))
-    
+
         if (props != this.props) {
 
-            if(props.hasError){
+            if (props.hasError) {
                 Toast.show({ text: "Some Error", buttonText: 'okay', duration: 3000 })
-            }else if(props.registerSuccessful){
-                if(this.state.usertype != '2'){
-                    this.props.navigation.navigate('Home',{gotoHome: false})
-                }else{
-                    this.props.navigation.navigate('Profile',{gotoHome: true})
+            } else if (props.registerSuccessful) {
+                if (this.state.usertype != '2') {
+                    this.props.navigation.navigate('Home', { gotoHome: false })
+                } else {
+                    this.props.navigation.navigate('Profile', { gotoHome: true })
                     // if(props.response[0].is_complete == 0){
                     //     this.props.navigation.navigate('Home')
                     // }else{
                     //     this.props.navigation.navigate('Profile')
                     // }
                 }
-               
+
                 Toast.show({ text: 'You have successfully Registered', buttonText: 'okay', duration: 3000 })
             }
         }
@@ -70,7 +70,7 @@ class SignUp extends React.Component {
 
 
 
-    SignUp(){
+    SignUp() {
 
         let username = this.state.userName
         let email = this.state.email
@@ -83,7 +83,7 @@ class SignUp extends React.Component {
                 text: 'Please enter details',
                 buttonText: 'okay', duration: 3000
             })
-           
+
             return;
         }
 
@@ -96,27 +96,29 @@ class SignUp extends React.Component {
         }
 
         NetInfo.isConnected.fetch().done((isConnected) => {
-            if(isConnected){
+            if (isConnected) {
                 sendOtp(number).then(res => {
 
                     console.log("RESPONSE === " + JSON.stringify(res))
-                    
-                    if(res.status == '1'){
+
+                    if (res.status == '1') {
                         this.props.navigation.navigate("VerifyUser",
-                        {username : username,email: email,
-                            password:password,description:'',
-                            number:number, locationid : 0, usertype: "3"})
-                        
-                    }else{
+                            {
+                                username: username, email: email,
+                                password: password, description: '',
+                                number: number, locationid: 0, usertype: "3"
+                            })
+
+                    } else {
                         Toast.show({ text: 'Something went wrong', buttonText: 'okay', duration: 3000 })
-        
+
                         // alert(res.message)
                     }
-                
+
                 })
-                .catch((err) => console.log("ERROR : " + err))
+                    .catch((err) => console.log("ERROR : " + err))
             }
-            else{
+            else {
                 Toast.show({ text: 'No internet connection found!- Internet connection required to use this app', buttonText: 'okay', duration: 3000 })
             }
         })
@@ -125,7 +127,7 @@ class SignUp extends React.Component {
     }
 
 
-    onSkip(){
+    onSkip() {
         console.log("SKIPPPPPPP")
         AsyncStorage.setItem("FIRSTTIME", true)
         this.props.navigation.navigate('Search ')
@@ -133,13 +135,21 @@ class SignUp extends React.Component {
 
     render() {
         return (
-            <SafeAreaView style={{flex:1, padding: 10 }}>
+            <SafeAreaView style={{ flex: 1, padding: 10 }}>
 
                 {this.props.isLoading && <Loader></Loader>}
 
-                <Image style={{width:80,height:80, marginTop:10, alignSelf:'center' }}
-                    source={require('../assets/applogo.png')}></Image>
-                <Text style={{ padding: 10, alignSelf:'center' }}>Welcome! Join Arteify</Text>
+
+                {/* <Image style={{ width: 80, height: 80, marginTop: 10, alignSelf: 'center' }}
+                    source={require('../assets/applogo.png')}></Image> */}
+
+                <Image style={{ width: 140, marginTop: 40, alignSelf: 'center' }}
+                    resizeMode='contain'
+                    source={require('../assets/title.png')}></Image>
+
+                <Text style={{ marginLeft: 10, marginTop: 30, fontSize: 18, color: Colors.Darkgrey, fontWeight: 'bold' }}>Welcome! Join Arteify</Text>
+                <Text style={{ marginLeft: 10, color: Colors.Grey }}>Please sign in to continue</Text>
+
 
                 {/* <Text style={{ paddingTop:10, alignSelf:'center', fontWeight:'bold' }}>{' Sign up with '}</Text> */}
 
@@ -157,87 +167,149 @@ class SignUp extends React.Component {
                     </View>
                 </View> */}
 
-                <View style={{ marginLeft: 10, marginRight: 10 }}>
-                    <TextField
+                <View style={{ marginLeft: 10, marginRight: 10, marginTop: 20, flexDirection: 'row', alignItems: 'center' }}>
+
+                    <Image style={{ width: 20, height: 20, marginTop: 20, flexDirection: 'row', alignItems: 'center' }}
+                        source={require('../assets/user.png')}></Image>
+
+                    {/* <TextField
                         label='Username'
                         value={this.state.userName}
                         onChangeText={(userName) => this.setState({ userName })}
+                    /> */}
+
+                    <TextInput
+                        style={{ marginLeft: 10, height: 40, borderBottomWidth: 1, borderBottomColor: Colors.appColor, flex: 1 }}
+                        autoCapitalize='none'
+                        placeholder="Username"
+                        onChangeText={(userName) => this.setState({ userName })}
+                        value={this.state.userName}
                     />
                 </View>
 
-                <View style={{ marginLeft: 10, marginRight: 10 }}>
-                    <TextField
+                <View style={{ marginLeft: 10, marginRight: 10, marginTop: 20, flexDirection: 'row', alignItems: 'center' }}>
+
+                    <Image style={{ width: 20, height: 20 }}
+                        source={require('../assets/mail.png')}></Image>
+
+                    {/* <TextField
                         autoCapitalize='none'
                         label='Email'
                         value={this.state.email}
                         onChangeText={(email) => this.setState({ email })}
+                    /> */}
+
+                    <TextInput
+                        style={{ marginLeft: 10, height: 40, borderBottomWidth: 1, borderBottomColor: Colors.appColor, flex: 1 }}
+                        autoCapitalize='none'
+                        placeholder="Email"
+                        onChangeText={(email) => this.setState({ email })}
+                        value={this.state.email}
                     />
                 </View>
 
-                <View style={{ marginLeft: 10, marginRight: 10 }}>
-                    <TextField
+                <View style={{ marginLeft: 10, marginRight: 10, marginTop: 20, flexDirection: 'row', alignItems: 'center' }}>
+
+                    <Image style={{ width: 20, height: 20 }}
+                        source={require('../assets/contact.png')}></Image>
+
+                    {/* <TextField
                         autoCapitalize='none'
                         keyboardType="numeric"
                         label='Phone Number'
                         maxLength={10}
                         value={this.state.number}
                         onChangeText={(number) => this.setState({ number })}
+                    /> */}
+
+                    <TextInput
+                        style={{ marginLeft: 10, height: 40, borderBottomWidth: 1, borderBottomColor: Colors.appColor, flex: 1 }}
+                        autoCapitalize='none'
+                        placeholder="Mobile Number"
+                        maxLength={10}
+                        keyboardType='numeric'
+                        onChangeText={(number) => this.setState({ number })}
+                        value={this.state.number}
                     />
                 </View>
 
-                <View style={{ marginLeft: 10, marginRight: 10 }}>
-                    <TextField
+                <View style={{ marginLeft: 10, marginRight: 10, marginTop: 20, flexDirection: 'row', alignItems: 'center' }}>
+
+                    <Image style={{ width: 20, height: 20 }}
+                        source={require('../assets/lock.png')}></Image>
+
+                    {/* <TextField
                         autoCapitalize='none'
                         label='Password'
                         value={this.state.password}
                         onChangeText={(password) => this.setState({ password })}
+                    /> */}
+
+                    <TextInput
+                        style={{ marginLeft: 10, height: 40, borderBottomWidth: 1, borderBottomColor: Colors.appColor, flex: 1 }}
+                        autoCapitalize='none'
+                        placeholder="Password"
+                        onChangeText={(password) => this.setState({ password })}
+                        value={this.state.password}
                     />
                 </View>
 
 
-                <View style={{ marginTop: 50, margin: 10, }}>
-                    <TouchableOpacity
-                    onPress={this.SignUp.bind(this)} 
-                    style={{ backgroundColor: Colors.appColor, borderRadius: 4, padding: 10 }}>
-                        <Text style={{ color: '#fff', fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>{" SIGN UP "}</Text>
-                    </TouchableOpacity>
-                    {/* <Text style={{ alignSelf: 'flex-end', paddingTop: 10 }}>FORGOT PASSWORD</Text> */}
-                </View>
+                <KeyboardAvoidingView behavior="position">
+                    <View style={{ marginTop: 50, margin: 10, }}>
+                        <TouchableOpacity
+                            onPress={this.SignUp.bind(this)}
+                            style={{ backgroundColor: Colors.appColor, borderRadius: 4, padding: 10 }}>
+                            <Text style={{ color: '#fff', fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>{" SIGN UP "}</Text>
+                        </TouchableOpacity>
+                        {/* <Text style={{ alignSelf: 'flex-end', paddingTop: 10 }}>FORGOT PASSWORD</Text> */}
+                    </View>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center',marginTop:20  }}>
-                    <TouchableOpacity 
-                    onPress={() => this.props.navigation.goBack()}
-                    style={{flexDirection:'row'}}>
+                </KeyboardAvoidingView>
+
+                <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 20 }}>
+                    <TouchableOpacity
+                        onPress={() => this.props.navigation.goBack()}
+                        style={{ flexDirection: 'row' }}>
                         <Icon style={{ padding: 10, alignSelf: 'center', }} name='arrow-back' />
                         <Text style={{ alignSelf: 'center' }}>Go back</Text>
                     </TouchableOpacity>
                 </View>
 
 
-                <Text
-                onPress={() => this.props.navigation.navigate('LoginPage')} 
-                style={{position:'absolute', left:20, bottom:30,
-                 fontSize:14, fontWeight:'bold'}}>
-                    {"SIGN IN "}</Text>
+                <View style={{ flex: 1, flexDirection: 'row' }}>
+                    <Text
+                        onPress={() => this.props.navigation.navigate('LoginPage')}
+                        style={{
+                            fontSize: 14, fontWeight: 'bold', alignSelf: 'flex-end', padding: 10
+                        }}>
+                        {"SIGN IN "}</Text>
 
-                <Text
-                onPress={this.onSkip.bind(this)}
-                style={{position:'absolute', right:20, bottom:30,
-                 fontSize:14,fontWeight:'bold'}}
-                >
-                    SKIP
-                </Text> 
-                
+
+                    <Text
+                        onPress={this.onSkip.bind(this)}
+                        style={{
+                            position: 'absolute', right: 0, padding: 10,
+                            fontSize: 14, fontWeight: 'bold', textAlign: 'right', alignSelf: 'flex-end'
+                        }}
+                    >
+                        SKIP
+                </Text>
+
+                </View>
+
+
+
 
 
             </SafeAreaView>
         )
     }
-} 
+}
 
 
-function mapStateToProps(state){
-    return{
+function mapStateToProps(state) {
+    return {
         response: state.registerReducer.data,
         isLoading: state.registerReducer.registerIsLoading,
         registerSuccessful: state.registerReducer.registerSuccessful,
@@ -246,9 +318,9 @@ function mapStateToProps(state){
 
 }
 
-function mapDispatchToProps(dispatch){
-    return{
-        doRegister: (username,email,password,description,locationid,number,usertype) => dispatch(register(username,email,password,description,locationid,number,usertype))
+function mapDispatchToProps(dispatch) {
+    return {
+        doRegister: (username, email, password, description, locationid, number, usertype) => dispatch(register(username, email, password, description, locationid, number, usertype))
     }
 
 }
