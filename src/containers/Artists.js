@@ -61,7 +61,7 @@ class Artists extends React.Component {
                     console.log("RESPONSE === " + JSON.stringify(res))
                     
                     if(res.status == '1'){
-                        this.setState({ artlistList: this.props.response, backUpList: this.props.response, loading:false })
+                        this.setState({ artlistList: res.data, backUpList: res.data, loading:false })
                         
                     }else{
                         Toast.show({ text: 'Something went wrong', buttonText: 'okay', duration: 3000 })

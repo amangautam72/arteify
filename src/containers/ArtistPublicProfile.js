@@ -1,9 +1,11 @@
 import React from 'react'
-import { Text, View, Image, FlatList, StyleSheet, AsyncStorage } from 'react-native'
+import { Text, View, Image, FlatList, StyleSheet, AsyncStorage,Dimensions } from 'react-native'
 
 import { Header, Left, Right, Button, Icon, Toast } from 'native-base'
 
 import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
+import { WebView } from 'react-native-webview';
+
 
 import { connect } from 'react-redux'
 import { fetchData } from '../actions/ProfileDataAction';
@@ -13,7 +15,7 @@ import Colors from '../Colors/Colors';
 import { SERVER_ADDRESS } from '../services/server';
 import { followUnfollow, followCheck } from '../services/requests';
 
-const listData = ['Live Musician', 'Magician']
+const width = Dimensions.get('window').width
 class ArtistPublicProfile extends React.Component {
 
     constructor(props) {

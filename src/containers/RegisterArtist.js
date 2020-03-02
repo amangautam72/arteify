@@ -105,6 +105,15 @@ class RegisterArtist extends React.Component {
             return;
         }
 
+        //bypassing otp
+        this.props.navigation.navigate("VerifyUser",
+                        {username: username,email: email,
+                            password:password,description:description,
+                            number:number, locationid : locationid, usertype: "2"})
+        
+                            
+        return                    
+
         NetInfo.isConnected.fetch().done((isConnected) => {
             if(isConnected){
                 sendOtp(number).then(res => {

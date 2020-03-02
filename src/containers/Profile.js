@@ -79,9 +79,10 @@ class Profile extends React.Component {
             let image = ''
             if (this.state.image == this.state.updatedImage) {
                 image = ''
-            } else {
-                image = this.state.updatedImage
-            }
+            } 
+            //else {
+                //image = this.state.updatedImage
+            //}
 
             Alert.alert(
                 '',
@@ -98,14 +99,16 @@ class Profile extends React.Component {
 
                                         this.setState({
                                             username: res.data.user_name, updatedName: res.data.user_name,
-                                            image: res.data.image != null && res.data.image,
-                                            updatedImage: res.data.image != null && res.data.image,
+                                            //image: res.data.image != null && res.data.image,
+                                            //updatedImage: res.data.image != null && res.data.image,
+                                            image: res.data.image,
+                                            updatedImage: res.data.image,
                                             userDes: res.data.description, updatedDes: res.data.description,
                                         })
                                     }
                                 }).catch(err => console.log(err))
 
-                            this.props.navigation.goBack()
+                            //this.props.navigation.goBack()
                         },
                         style: 'cancel',
                     },
