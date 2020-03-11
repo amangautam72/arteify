@@ -19,7 +19,7 @@ class LoginPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            email: '',
+            mobile: '',
             password: '',
             loading: false,
             fcmToken: ''
@@ -64,10 +64,10 @@ class LoginPage extends React.Component {
     }
 
     signIn() {
-        let email = this.state.email
+        let mobile = this.state.mobile
         let password = this.state.password
 
-        if (password === '' || email === '') {
+        if (password === '' || mobile === '') {
             Toast.show({
                 text: 'Please enter details',
                 buttonText: 'okay', duration: 3000
@@ -76,15 +76,15 @@ class LoginPage extends React.Component {
             return;
         }
 
-        if (reg.test(email) === false) {
+        if (mobile.length < 10) {
             Toast.show({
-                text: 'Invalid email',
+                text: 'Invalid username',
                 buttonText: 'okay', duration: 3000
             })
             return;
         }
 
-        this.props.doLogin(email, password)
+        this.props.doLogin(mobile, password)
     }
 
     render() {
@@ -115,9 +115,10 @@ class LoginPage extends React.Component {
                     <TextInput
                         style={{marginLeft:10, height: 40, borderBottomWidth:1,borderBottomColor:Colors.appColor, flex:1}}
                         autoCapitalize='none'
-                        placeholder="Email"
-                        onChangeText={(email) => this.setState({ email })}
-                        value={this.state.email}
+                        keyboardType='numeric'
+                        placeholder="Phone Number"
+                        onChangeText={(mobile) => this.setState({ mobile })}
+                        value={this.state.mobile}
                     />
                 </View>
 

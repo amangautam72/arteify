@@ -10,6 +10,7 @@ import NetInfo from "@react-native-community/netinfo";
 
 import { connect } from 'react-redux'
 import { fetchData } from '../actions/ArtistListAction';
+import { SERVER_ADDRESS } from '../services/server';
 import Colors from '../Colors/Colors';
 import { artistList } from '../services/requests';
 
@@ -108,7 +109,7 @@ class Artists extends React.Component {
                 }}>
                 <Image
                     style={{ width: 120, height: 120, borderBottomLeftRadius: 3, borderTopLeftRadius: 3 }}
-                    source={{ uri: 'https://www.flare.com/wp-content/uploads/2016/01/prof1-600x409.jpg' }}
+                    source={{ uri: SERVER_ADDRESS + '/images/' + item.img }}
                 />
 
 

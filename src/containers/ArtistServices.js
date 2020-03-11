@@ -102,7 +102,7 @@ class ArtistServices extends React.Component {
                     numOfPeople: item.team, duration: item.duration,
                     budget: item.budget, workLinks: item.url != "" ? item.url.split(',') : [],
                     slot: item.slot.split(','),
-                    reload: (userid) => this.reloadPage(userid)
+                    reload: (userid) => this.getServices(userid)
                 })}
                 style={{
                     borderRadius: 2,

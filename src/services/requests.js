@@ -9,7 +9,7 @@ export const loginRequest = async (username,password) => {
     const fcmToken = await firebase.messaging().getToken();
 
     var params = {
-        email: username,
+        mobile: username,
         password: password,
         token: fcmToken
     }

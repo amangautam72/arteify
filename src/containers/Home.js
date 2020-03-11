@@ -45,7 +45,11 @@ export default class Home extends React.Component {
         }
 
 
+        this.fetchData()
+       
+    }
 
+    fetchData() {
         categories().then(res => {
             console.log("RESSSSS  :  " + JSON.stringify(res))
 
@@ -81,7 +85,6 @@ export default class Home extends React.Component {
             }
         })
             .catch((err) => this.setState({ loading: false }))
-
 
     }
 
@@ -168,6 +171,11 @@ export default class Home extends React.Component {
         </TouchableOpacity>
     );
 
+
+    onRefresh() {
+        this.fetchData()
+    }
+
     render() {
         return (
             <View
@@ -206,7 +214,8 @@ export default class Home extends React.Component {
                 <ScrollView
                     refreshControl={
                         <RefreshControl
-                            refreshing={this.state.loading} />
+                            refreshing={this.state.loading} 
+                            onRefresh={() => this.onRefresh()}/>
                     }>
 
 

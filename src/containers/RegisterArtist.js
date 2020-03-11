@@ -88,7 +88,7 @@ class RegisterArtist extends React.Component {
         let locationid = this.state.locationid
         let number = this.state.phoneNo
 
-        if (username === '' || description == '' || password === '' || email === '' || locationid == 0 || number == '') {
+        if (username === '' || description == '' || password === '' || locationid == 0 || number == '') {
             Toast.show({
                 text: 'Please enter details',
                 buttonText: 'okay', duration: 3000
@@ -97,7 +97,7 @@ class RegisterArtist extends React.Component {
             return;
         }
 
-        if (reg.test(email) === false) {
+        if (email != '' && reg.test(email) === false) {
             Toast.show({
                 text: 'Invalid email',
                 buttonText: 'okay', duration: 3000
@@ -215,6 +215,7 @@ class RegisterArtist extends React.Component {
                                     value={this.state.password}
                                     onChangeText={(password) => this.setState({ password })}
                                     multiline={false}
+                                    secureTextEntry={true}
                                     placeholder="Password"
                                     style={{ paddingBottom: 5,paddingTop:5, marginTop: 5 }}
 

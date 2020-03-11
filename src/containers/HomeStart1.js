@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, ImageBackground, Image, AsyncStorage, TouchableOpacity } from 'react-native'
 import firebase from 'react-native-firebase';
+import Colors from '../Colors/Colors';
 
 export default class HomeStart extends React.Component {
 
@@ -44,12 +45,12 @@ export default class HomeStart extends React.Component {
         return (
             <ImageBackground
                 style={{ flex: 1,  alignItems: 'center',backgroundColor:'#FFFFFF' }}
-                //source={{ uri: 'http://www.lovethispic.com/uploaded_images/157198-Explore-.jpg' }}
+                source={require('../assets/background.jpg')}
                 >
 
                 <View style={[styles.card,{marginTop:200}]}>
                 <Image style={{width:100,height:100, }}
-                    source={require('../assets/applogo.png')}></Image>
+                    source={require('../assets/arteifylogo.png')}></Image>
                 </View>
                
 
@@ -62,7 +63,8 @@ export default class HomeStart extends React.Component {
                             style={{ borderRadius: 5 }}>
                             <Image
                                 style={{ width: 150, height: 80, borderTopLeftRadius: 5, borderTopRightRadius: 5 }}
-                                source={{ uri: 'https://www.flare.com/wp-content/uploads/2016/01/prof1-600x409.jpg' }}
+                                //source={{ uri: 'https://www.flare.com/wp-content/uploads/2016/01/prof1-600x409.jpg' }}
+                                source={require('../assets/doors.jpg')}
                             />
 
                             <Text style={{ alignSelf: 'center', padding: 10, fontSize: 14, fontWeight: 'bold',color: '#505050' }}>{'Find an Artist '}</Text>
@@ -77,7 +79,8 @@ export default class HomeStart extends React.Component {
                             <Image
                                
                                 style={{ width: 150, height: 80, borderTopLeftRadius: 5, borderTopRightRadius: 5 }}
-                                source={{ uri: 'https://melbournesymphonyorchestra-assets.s3.amazonaws.com/assets/Image/4995-fitandcrop-486x486.jpg' }}
+                                //source={{ uri: 'https://melbournesymphonyorchestra-assets.s3.amazonaws.com/assets/Image/4995-fitandcrop-486x486.jpg' }}
+                                source={require('../assets/guitar.jpg')}
                             />
 
                             <Text style={{ alignSelf: 'center', padding: 10, fontSize: 14, fontWeight: 'bold',color: '#505050' }}>{'Become an Artist '}</Text>
@@ -91,7 +94,7 @@ export default class HomeStart extends React.Component {
                     onPress={() => this.props.navigation.navigate('LoginPage')}
                     style={{padding:10,
                         position: 'absolute', left: 10, bottom: 20,
-                        fontSize: 15, fontWeight: 'bold', color: '#505050' 
+                        fontSize: 15, fontWeight: 'bold', color: '#fff' 
                     }}>
                     {"SIGN IN "}</Text>
 
@@ -99,7 +102,7 @@ export default class HomeStart extends React.Component {
                     onPress={() => this.props.navigation.navigate('SignUp')}
                     style={{padding:10,
                         position: 'absolute', right: 10, bottom: 20,
-                        fontSize: 15, fontWeight: 'bold', color: '#505050'
+                        fontSize: 15, fontWeight: 'bold', color: '#fff'
                     }}>SKIP</Text>
 
 

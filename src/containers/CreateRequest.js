@@ -394,7 +394,7 @@ class CreateRequest extends React.Component {
                             <TextInput
                                 value={this.state.duration}
                                 onChangeText={(duration) => this.setState({ duration })}
-                                placeholder="Enter here"
+                                placeholder="Enter duration in hours"
                                 placeholderTextColor="#ddd"
                                 keyboardType='numeric'
                                 autoCapitalize="none"

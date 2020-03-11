@@ -185,7 +185,7 @@ class ArtistPublicProfile extends React.Component {
                 <View style={{  height: 175, }}>
 
                     <TouchableOpacity
-                        onPress={() => this.props.navigation.navigate("VideoPlayer", { videoid: item.post_data[0].video })}
+                        //onPress={() => this.props.navigation.navigate("VideoPlayer", { videoid: item.post_data[0].video })}
                         style={{  height: 175, backgroundColor: '#000000' }}>
                         <WebView
                             style={{ width: width + 10, alignSelf: 'center', margin: 0, backgroundColor: '#000000' }}

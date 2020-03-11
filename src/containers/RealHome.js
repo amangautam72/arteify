@@ -66,7 +66,7 @@ export default class RealHome extends React.Component {
 
             console.log("RESS  : " + JSON.stringify(res))
             if (res.status == '1') {
-                this.setState({ posts: res.data })
+                this.setState({ posts: res.data,loading:false })
             } else {
                 this.setState({ loading: false })
             }
@@ -210,12 +210,14 @@ export default class RealHome extends React.Component {
             onPress={() => this.props.navigation.navigate('ArtistPublicProfile', { userid: item.id })}
         >
             <Image
+                
                 style={{ height: 80 }}
                 source={{ uri: item.image != null ? SERVER_ADDRESS + '/images/' + item.image : 'https://www.flare.com/wp-content/uploads/2016/01/prof1-600x409.jpg' }}
             />
+    
             {/* <Text style={{ width: 120, color: '#ffffff', position: 'absolute', backgroundColor: 'rgba(52, 52, 52, 0.6)', textAlign: 'center', paddingTop: 3, paddingBottom: 3 }}>{item.user_name}</Text> */}
             <TouchableOpacity>
-                <Text style={{ fontSize: 14, fontWeight: 'bold', alignSelf: 'center', padding: 5, marginTop: 10, }}>{item.user_name + "  "}</Text>
+                <Text style={{ fontSize: 14, fontWeight: 'bold', alignSelf: 'center', padding: 5, marginTop: 10, }}>{this.Capitalize(item.user_name) + "  "}</Text>
             </TouchableOpacity>
 
         </TouchableOpacity>
@@ -340,7 +342,7 @@ export default class RealHome extends React.Component {
                         data={this.state.topUsers}
                         // extraData={this.state}
                         keyExtractor={(item) => item.id.toString()}
-                        numColumns={3}
+                        numColumns={2}
                         renderItem={this.renderUsersToFollow}
                     />
 

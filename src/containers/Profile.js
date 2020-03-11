@@ -80,9 +80,9 @@ class Profile extends React.Component {
             if (this.state.image == this.state.updatedImage) {
                 image = ''
             } 
-            //else {
-                //image = this.state.updatedImage
-            //}
+            else {
+                image = this.state.updatedImage
+            }
 
             Alert.alert(
                 '',
@@ -98,12 +98,12 @@ class Profile extends React.Component {
                                         AsyncStorage.setItem("USERNAME", this.state.updatedName)
 
                                         this.setState({
-                                            username: res.data.user_name, updatedName: res.data.user_name,
+                                            username: res.data[0].user_name, updatedName: res.data[0].user_name,
                                             //image: res.data.image != null && res.data.image,
                                             //updatedImage: res.data.image != null && res.data.image,
-                                            image: res.data.image,
-                                            updatedImage: res.data.image,
-                                            userDes: res.data.description, updatedDes: res.data.description,
+                                            image: res.data[0].image,
+                                            updatedImage: res.data[0].image,
+                                            userDes: res.data[0].description, updatedDes: res.data[0].description,
                                         })
                                     }
                                 }).catch(err => console.log(err))
@@ -209,7 +209,6 @@ class Profile extends React.Component {
             console.log(image);
 
             this.setState({ updatedImage: image.path, image: '' })
-
         })
     }
 

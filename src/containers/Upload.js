@@ -247,19 +247,18 @@ export default class Upload extends React.Component {
           </View>
         </Modal>
 
-        <Header style={{ backgroundColor: Colors.appColor }}>
-          <Left style={{ flex: 1, flexDirection: "row" }}>
-            <Button transparent
-              onPress={() => this.props.navigation.goBack()}>
-              <Icon name='arrow-back' />
+        <Header androidStatusBarColor={Colors.Darkgrey} style={{ backgroundColor:'#DDDDDD'}}>
+                    <Left style={{ flexDirection: "row" }}>
+                        <Button transparent
+                            onPress={() => this.props.navigation.goBack()}>
+                            <Icon style={{ color: Colors.Darkgrey }} name='arrow-back' />
 
-            </Button>
-            <Text style={{ fontSize: 18, padding: 10, color: '#fff', fontWeight: 'bold' }}>{'Upload Work Sample '}</Text>
-          </Left>
+                        </Button>
+                        <Text style={{width:width, fontSize: 18, padding: 10, color: Colors.Darkgrey, fontWeight: 'bold' }}>{'Upload Work Sample '}</Text>
+                    </Left>
 
-          <Right></Right>
-        </Header>
-
+                    <Right></Right>
+                </Header>
 
 
 

@@ -155,6 +155,15 @@ export default class ArtistRequestBook extends React.Component {
 
     }
     render() {
+
+        const filteredImage = this.state.work.filter(item => item.filetype == 'image');
+        const swipeable = filteredImage.map((item) => {
+        return <Image
+        resizeMode={'cover'}
+        style={{ width: width, height: 200 }}
+        source={{ uri: SERVER_ADDRESS + '/images/' + item.image }}
+    />
+        })
         return (
             <ScrollView
                 ref='_scrollview'>
@@ -171,37 +180,12 @@ export default class ArtistRequestBook extends React.Component {
 
                     {
                         this.state.work.length > 0 ?
+                           
                             <SwipeableViews
-                                style={{ flex: 1, }}>
+                                style={{ flex: 1 }}>
 
-                                {this.state.work.map((item, index) => {
-                                    return (item.filetype == 'image' ?
-                                        // <TouchableOpacity
-                                        //     onPress={() => this.props.navigation.navigate("VideoPlayer", { videoid: item.video })}
-                                        //     style={{ width: width, height: 200, backgroundColor: '#000000' }}>
-                                        //     <WebView
-                                        //         style={{ width: width + 10, alignSelf: 'center', margin: 0, backgroundColor: '#000000' }}
-                                        //         automaticallyAdjustContentInsets={true}
-                                        //         source={{ html: `<iframe frameborder="0" width="100%" height="100%" controls="0" src="https://www.dailymotion.com/embed/video/${item.video}?queue-enable=false&sharing-enable=false&ui-logo=0" allowfullscreen></iframe>` }}
-                                        //     />
-
-                                        //     <View style={{ backgroundColor: 'rgba(0,0,0,0)', position: 'absolute', width: width, height: 400 }}></View>
-                                        // </TouchableOpacity> :
-                                        // <View style={{width:width, height: 300, backgroundColor:'#000'}}>
-                                        <Image
-                                            resizeMode={'cover'}
-                                            style={{ width: width, height: 200 }}
-                                            source={{ uri: SERVER_ADDRESS + '/images/' + item.image }}
-                                        /> : 
-                                        <Image
-                                        resizeMode={'cover'}
-                                        style={{width:width,height:200, backgroundColor:'#ddd'}}>
-
-                                        </Image>
-                                        // </View>
-                                    )
-
-                                })}
+                                {swipeable}
+                               
                             </SwipeableViews>
                             :
                             <Image
@@ -240,7 +224,7 @@ export default class ArtistRequestBook extends React.Component {
 
                         <Text style={{ color: '#000', paddingLeft: 5, paddingTop: 5 }}
                         > {this.state.request.username}
-                            <Text style={{ fontSize: 12 }}> {'\n Scheppend Certified'}</Text>
+                            <Text style={{ fontSize: 12 }}> {'\n Scheppend verified'}</Text>
                         </Text>
 
                         <Text
@@ -304,7 +288,7 @@ export default class ArtistRequestBook extends React.Component {
 
 
                 <View style={{margin:10,padding:10, backgroundColor:Colors.lightGrey, borderRadius:5}}>
-                    <Text style={{fontSize:15, paddingBottom:5}}>Videos</Text>
+                    <Text style={{fontSize:15, paddingBottom:5, fontWeight:'bold'}}>Videos</Text>
                     <FlatList
                         // keyboardShouldPersistTaps='always'
                         horizontal={true}
