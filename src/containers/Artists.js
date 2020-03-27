@@ -1,5 +1,5 @@
 import React from 'react'
-import {
+import {Dimensions,
     StyleSheet, Text, View, Image, FlatList, TextInput,
     TouchableOpacity, AsyncStorage,RefreshControl
 } from 'react-native'
@@ -14,7 +14,7 @@ import { SERVER_ADDRESS } from '../services/server';
 import Colors from '../Colors/Colors';
 import { artistList } from '../services/requests';
 
-
+const width = Dimensions.get('window').width
 class Artists extends React.Component {
 
     constructor(props) {
@@ -107,10 +107,18 @@ class Artists extends React.Component {
                 style={{
                     flexDirection: 'row',
                 }}>
-                <Image
-                    style={{ width: 120, height: 120, borderBottomLeftRadius: 3, borderTopLeftRadius: 3 }}
-                    source={{ uri: SERVER_ADDRESS + '/images/' + item.img }}
-                />
+                {item.img != null && item.img != '' ?
+                     <Image
+                     style={{ width: 120, height: 120, borderBottomLeftRadius: 3, borderTopLeftRadius: 3 }}
+                     source={{ uri: SERVER_ADDRESS + '/images/' + item.img }}
+                 /> :
+                 <Image
+                 style={{ width: 120, height: 120, borderBottomLeftRadius: 3, borderTopLeftRadius: 3 }}
+                 source={require('../assets/man.png')}
+             />
+                
+                }    
+               
 
 
                 <View style={{ paddingLeft: 10, paddingRight: 10, flex: 1 }}>
@@ -165,7 +173,7 @@ class Artists extends React.Component {
                             <Icon style={{ color: Colors.Darkgrey }} name='arrow-back' />
 
                         </Button>
-                        <Text style={{ fontSize: 18, padding: 10, color: Colors.Darkgrey, fontWeight: 'bold' }}>{this.state.headerTitle + " "}</Text>
+                        <Text style={{width:width, fontSize: 18, padding: 10, color: Colors.Darkgrey, fontWeight: 'bold' }}>{this.state.headerTitle + " "}</Text>
                     </Left>
 
                     <Right></Right>

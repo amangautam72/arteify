@@ -28,13 +28,13 @@ export default class Book extends React.Component {
         {request:item, url:item.url.split(',')})}
         style={{ flexDirection: 'row', 
           }}>
-            <Image
+            {/* <Image
                 style={{ width: 120, height: 120,borderBottomLeftRadius:3,borderTopLeftRadius:3 }}
                 source={{ uri: 'https://www.flare.com/wp-content/uploads/2016/01/prof1-600x409.jpg' }}
-            />
+            /> */}
 
 
-            <View style={{ paddingLeft: 10,paddingRight:10, flex: 1 }}>
+            <View style={{ paddingLeft: 10,paddingRight:10,paddingBottom:10, flex: 1 }}>
                 <Text 
                 numberOfLines={2}
                 style={{ fontSize: 14,paddingTop:5, color: '#000', fontWeight: '700'}}>{item.title.toUpperCase()}</Text>
@@ -48,7 +48,7 @@ export default class Book extends React.Component {
                         <Text>Category : <Text style={{ fontWeight: 'bold' }}>{item.catname}</Text></Text>
                 {/* <Text
                     style={{ position: 'absolute', right: 5, bottom: 5, fontSize: 14,fontWeight:'bold', color: '#808B96' }}>Charge : */}
-            <Text style={{position: 'absolute', right: 5, bottom: 5, color: Colors.appColor, fontWeight:'bold' }}> {item.budget + ' Rs.  '}</Text>
+                <Text style={{position: 'absolute', right: 5, bottom: 5, color: Colors.appColor, fontWeight:'bold' }}> {item.budget + ' Rs.  '}</Text>
                 {/* </Text> */}
             </View>
 

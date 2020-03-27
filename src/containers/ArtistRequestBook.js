@@ -272,7 +272,7 @@ export default class ArtistRequestBook extends React.Component {
 
                 </View>
 
-                <Text style={{ textAlign: 'right', padding: 10, marginRight: 10 }}>Average Rate :
+                <Text style={{ textAlign: 'right', padding: 10, marginRight: 10 }}>Charge :
                     <Text style={{ color: '#000', fontSize: 15, fontWeight: 'bold' }}> {this.state.request.budget + ' Rs.'}</Text>
                 </Text>
 

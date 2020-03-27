@@ -68,7 +68,7 @@ export default class Categories extends React.Component {
                     source={{ uri: SERVER_ADDRESS + '/images/' + item.image }}
                 />
                 <View style={{padding:5, position:'absolute',backgroundColor:'rgba(52, 52, 52, 0.5)',justifyContent:'center',alignItems:'center', right:0,left:0, bottom:0}}>
-                <Text style={{fontSize: 13, fontWeight:'bold', color:'white'  }}>{item.name + " "}</Text>
+                <Text style={{alignSelf:'stretch', fontSize: 13, fontWeight:'bold', color:'white'  }}>{item.name + " "}</Text>
                 </View>
 
             </TouchableOpacity>

@@ -20,7 +20,7 @@ class ChangePassword extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            email: '',
+            number: '',
             password: '',
             password2: '',
             loading: false,
@@ -28,11 +28,11 @@ class ChangePassword extends React.Component {
     }
 
     signIn() {
-        let email = this.state.email
+        let number = this.state.number
         let password = this.state.password
         let password2 = this.state.password2
 
-        if (password === '' || password2 == '' || email === '') {
+        if (password === '' || password2 == '' || number === '') {
             Toast.show({
                 text: 'Please enter details',
                 buttonText: 'okay', duration: 3000
@@ -41,9 +41,9 @@ class ChangePassword extends React.Component {
             return;
         }
 
-        if (reg.test(email) === false) {
+        if (number.length<10) {
             Toast.show({
-                text: 'Invalid email',
+                text: 'Invalid Number',
                 buttonText: 'okay', duration: 3000
             })
             return;
@@ -59,12 +59,14 @@ class ChangePassword extends React.Component {
 
         this.setState({ loading: true })
 
-        forgotPassword(email).then((res) => {
+        forgotPassword(number).then((res) => {
             console.log("RESPONSE : " + JSON.stringify(res))
             if (res.status == "1") {
                 this.setState({ loading: false })
                 Toast.show({ text: "An otp has been sent to your registered number", buttonText: 'okay', duration: 3000 })
-                this.props.navigation.replace("ConfirmPassword", { email: email, password: password, mobile: res.data })
+                this.props.navigation.replace("ConfirmPassword", { 
+                    //mobile: number, 
+                    password: password, mobile: res.data })
             }
             else {
                 this.setState({ loading: false })
@@ -99,9 +101,10 @@ class ChangePassword extends React.Component {
 
                     <TextInput
                         style={{ marginLeft: 10, height: 40, borderBottomWidth: 1, borderBottomColor: Colors.appColor, flex: 1 }}
-                        placeholder="Email"
-                        onChangeText={(email) => this.setState({ email })}
-                        value={this.state.email}
+                        placeholder="Mobile Number"
+                        keyboardType='numeric'
+                        onChangeText={(number) => this.setState({ number })}
+                        value={this.state.number}
                     />
                 </View>
 

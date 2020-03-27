@@ -271,6 +271,7 @@ export default class RealHome extends React.Component {
     onRefresh() {
         this.followingsPost()
         this.topUsers()
+        this.getEvents()
     }
 
     render() {
@@ -342,7 +343,7 @@ export default class RealHome extends React.Component {
                         data={this.state.topUsers}
                         // extraData={this.state}
                         keyExtractor={(item) => item.id.toString()}
-                        numColumns={2}
+                        numColumns={3}
                         renderItem={this.renderUsersToFollow}
                     />
 

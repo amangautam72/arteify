@@ -339,8 +339,8 @@ class BookArtist extends React.Component {
 
                 </View>
 
-                <Text style={{ textAlign: 'right', padding: 10, marginRight:10 }}>Rate :
-                    <Text style={{ color: '#000', fontSize: 15, fontWeight: 'bold' }}> {this.state.request.budget}</Text>
+                <Text style={{ textAlign: 'right', padding: 10, marginRight:10 }}>Charge :
+                    <Text style={{ color: '#000', fontSize: 15, fontWeight: 'bold' }}> {this.state.request.budget + ' Rs.'}</Text>
                 </Text>
 
                 <TouchableOpacity

@@ -20,7 +20,7 @@ class ConfirmPassword extends React.Component {
         super(props)
         this.state = {
             otp: '',
-            email: this.props.navigation.getParam('email'),
+            //email: this.props.navigation.getParam('email'),
             password: this.props.navigation.getParam('password'),
             mobile: this.props.navigation.getParam('mobile'),
         }
@@ -51,7 +51,7 @@ class ConfirmPassword extends React.Component {
                         Toast.show({ text: 'Password has been changed successfully', buttonText: 'okay', duration: 3000 })
                         this.props.navigation.goBack()
                     } else {
-                        // Toast.show({ text: res.message, buttonText: 'okay', duration: 3000 })
+                        Toast.show({ text: res.message, buttonText: 'okay', duration: 3000 })
                         // alert(res.message)
                     }
 

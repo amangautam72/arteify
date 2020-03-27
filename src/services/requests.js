@@ -39,10 +39,10 @@ export const loginRequest = async (username,password) => {
         });
 }
 
-export const forgotPassword = async (mail) => {
+export const forgotPassword = async (number) => {
 
     var params = {
-        email: mail,
+        mobile: number,
     }
 
     var formBody = [];
