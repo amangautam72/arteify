@@ -110,7 +110,7 @@ class LoginPage extends React.Component {
                 <View style={{ marginLeft: 10, marginRight: 10,marginTop:20, flexDirection: 'row', alignItems: 'center' }}>
 
                     <Image style={{ width: 20, height: 20 }}
-                        source={require('../assets/mail.png')}></Image>
+                        source={require('../assets/phone.png')}></Image>
 
                     <TextInput
                         style={{marginLeft:10, height: 40, borderBottomWidth:1,borderBottomColor:Colors.appColor, flex:1}}

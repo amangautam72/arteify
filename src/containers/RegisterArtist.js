@@ -105,14 +105,14 @@ class RegisterArtist extends React.Component {
             return;
         }
 
-        //bypassing otp
-        this.props.navigation.navigate("VerifyUser",
-                        {username: username,email: email,
-                            password:password,description:description,
-                            number:number, locationid : locationid, usertype: "2"})
+        // //bypassing otp
+        // this.props.navigation.navigate("VerifyUser",
+        //                 {username: username,email: email,
+        //                     password:password,description:description,
+        //                     number:number, locationid : locationid, usertype: "2"})
         
                             
-        return                    
+        // return                    
 
         NetInfo.isConnected.fetch().done((isConnected) => {
             if(isConnected){
@@ -121,6 +121,7 @@ class RegisterArtist extends React.Component {
                     console.log("RESPONSE === " + JSON.stringify(res))
                     
                     if(res.status == '1'){
+                        Toast.show({ text: "an otp has been sent to your number", buttonText: 'okay', duration: 3000 })
                         this.props.navigation.navigate("VerifyUser",
                         {username: username,email: email,
                             password:password,description:description,
@@ -248,6 +249,8 @@ class RegisterArtist extends React.Component {
                             <Text style={{ fontWeight: 'bold', fontSize: 12 }}>PHONE NUMBER</Text>
                             <TextInput
                                 autoCapitalize="none"
+                                keyboardType='numeric'
+                                maxLength={10}
                                 value={this.state.phoneNo}
                                 onChangeText={(phoneNo) => this.setState({ phoneNo })}
                                 multiline={false}

@@ -97,7 +97,7 @@ class ChangePassword extends React.Component {
                     /> */}
 
                     <Image style={{ width: 20, height: 20 }}
-                        source={require('../assets/mail.png')}></Image>
+                        source={require('../assets/phone.png')}></Image>
 
                     <TextInput
                         style={{ marginLeft: 10, height: 40, borderBottomWidth: 1, borderBottomColor: Colors.appColor, flex: 1 }}

@@ -12,17 +12,6 @@ import { SERVER_ADDRESS } from '../services/server';
 
 const width = Dimensions.get('window').width
 
-const listData = [{
-    des: '',
-    title: 'Clowning & Physical Theatre Workshop at The Social House',
-    image: 'https://storage.googleapis.com/ehimages/2020/1/7/img_fe59c7177ea7bd27a58cb2dd05304168_1578391093996_processed_original.jpg'
-},
-{
-    des: '',
-    title: 'Sofar Sounds Show',
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6WMu5lPYhZjZiT5G3WnXTiHh7AVrvUo62SEGmcsoW1sNYmdTmrgxmOKeFyZLpwjcMc57R9pO9-g&s=10'
-}]
-
 
 export default class RealHome extends React.Component {
 

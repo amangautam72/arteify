@@ -46,14 +46,14 @@ class VerifyUser extends React.Component {
     }
 
     SignUp() {
-        // if (this.state.otp === '') {
-        //     Toast.show({
-        //         text: 'Please enter OTP',
-        //         buttonText: 'okay', duration: 3000
-        //     })
+        if (this.state.otp === '') {
+            Toast.show({
+                text: 'Please enter OTP',
+                buttonText: 'okay', duration: 3000
+            })
 
-        //     return;
-        // }
+            return;
+        }
 
         let username = this.state.username
         let email = this.state.email
@@ -65,7 +65,7 @@ class VerifyUser extends React.Component {
 
         NetInfo.isConnected.fetch().done((isConnected) => {
             if (isConnected) {
-                registerRequest("1", username, email, password, description, locationid, number, usertype).then(res => {
+                registerRequest(this.state.otp, username, email, password, description, locationid, number, usertype).then(res => {
 
                     console.log("RESPONSE === " + JSON.stringify(res))
 
@@ -76,9 +76,17 @@ class VerifyUser extends React.Component {
                                 res.data.userinfo.id, res.data.userinfo.user_name)
                             Toast.show({ text: 'You have successfully Registered', buttonText: 'okay', duration: 3000 })
                         } else {
-                            this.props.navigation.replace('Navigator')
+                            Toast.show({ text: 'You have successfully Registered', buttonText: 'okay', duration: 3000 })
+                            
                             this.storeValues(res.data.userinfo.usertype, 
                                 res.data.userinfo.id, res.data.userinfo.user_name)
+
+
+                            this.props.navigation.replace('Navigator')    
+                            // setTimeout(() => {
+                                
+                            // }, 1000)
+                            
                                 
                         }
                     } else {

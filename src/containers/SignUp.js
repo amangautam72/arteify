@@ -15,6 +15,7 @@ import Colors from '../Colors/Colors';
 
 import NetInfo from "@react-native-community/netinfo";
 import { sendOtp } from '../services/requests';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -139,9 +140,8 @@ class SignUp extends React.Component {
 
                 {this.props.isLoading && <Loader></Loader>}
 
+                <ScrollView>
 
-                {/* <Image style={{ width: 80, height: 80, marginTop: 10, alignSelf: 'center' }}
-                    source={require('../assets/applogo.png')}></Image> */}
 
                 <Image style={{ width: 140, marginTop: 40, alignSelf: 'center' }}
                     resizeMode='contain'
@@ -151,32 +151,13 @@ class SignUp extends React.Component {
                 <Text style={{ marginLeft: 10, color: Colors.Grey }}>Please sign in to continue</Text>
 
 
-                {/* <Text style={{ paddingTop:10, alignSelf:'center', fontWeight:'bold' }}>{' Sign up with '}</Text> */}
-
-                {/* <View style={{ flexDirection: 'row' }}>
-                    <View style={{ flex: 1, backgroundColor: '#3b5998', borderRadius: 4, margin: 10 }}>
-                        <TouchableOpacity style={{ alignSelf: 'center', padding: 10 }}>
-                            <Text style={{ color: '#fff', fontSize: 14, fontWeight: 'bold' }}>{" FACEBOOK "}</Text>
-                        </TouchableOpacity>
-
-                    </View>
-                    <View style={{ flex: 1, backgroundColor: '#ea4335', borderRadius: 4, margin: 10 }}>
-                        <TouchableOpacity style={{ alignSelf: 'center', padding: 10 }}>
-                            <Text style={{ color: '#fff', fontSize: 14, fontWeight: 'bold' }}>{"GOOGLE  "}</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View> */}
-
+               
                 <View style={{ marginLeft: 10, marginRight: 10, marginTop: 20, flexDirection: 'row', alignItems: 'center' }}>
 
                     <Image style={{ width: 20, height: 20, marginTop: 20, flexDirection: 'row', alignItems: 'center' }}
                         source={require('../assets/user.png')}></Image>
 
-                    {/* <TextField
-                        label='Username'
-                        value={this.state.userName}
-                        onChangeText={(userName) => this.setState({ userName })}
-                    /> */}
+                  
 
                     <TextInput
                         style={{ marginLeft: 10, height: 40, borderBottomWidth: 1, borderBottomColor: Colors.appColor, flex: 1 }}
@@ -192,12 +173,7 @@ class SignUp extends React.Component {
                     <Image style={{ width: 20, height: 20 }}
                         source={require('../assets/mail.png')}></Image>
 
-                    {/* <TextField
-                        autoCapitalize='none'
-                        label='Email'
-                        value={this.state.email}
-                        onChangeText={(email) => this.setState({ email })}
-                    /> */}
+                
 
                     <TextInput
                         style={{ marginLeft: 10, height: 40, borderBottomWidth: 1, borderBottomColor: Colors.appColor, flex: 1 }}
@@ -213,15 +189,7 @@ class SignUp extends React.Component {
                     <Image style={{ width: 20, height: 20 }}
                         source={require('../assets/contact.png')}></Image>
 
-                    {/* <TextField
-                        autoCapitalize='none'
-                        keyboardType="numeric"
-                        label='Phone Number'
-                        maxLength={10}
-                        value={this.state.number}
-                        onChangeText={(number) => this.setState({ number })}
-                    /> */}
-
+                   
                     <TextInput
                         style={{ marginLeft: 10, height: 40, borderBottomWidth: 1, borderBottomColor: Colors.appColor, flex: 1 }}
                         autoCapitalize='none'
@@ -233,29 +201,28 @@ class SignUp extends React.Component {
                     />
                 </View>
 
+
+                <KeyboardAvoidingView behavior="position">
                 <View style={{ marginLeft: 10, marginRight: 10, marginTop: 20, flexDirection: 'row', alignItems: 'center' }}>
 
                     <Image style={{ width: 20, height: 20 }}
                         source={require('../assets/lock.png')}></Image>
 
-                    {/* <TextField
-                        autoCapitalize='none'
-                        label='Password'
-                        value={this.state.password}
-                        onChangeText={(password) => this.setState({ password })}
-                    /> */}
-
+                  
                     <TextInput
                         style={{ marginLeft: 10, height: 40, borderBottomWidth: 1, borderBottomColor: Colors.appColor, flex: 1 }}
                         autoCapitalize='none'
                         placeholder="Password"
+                        secureTextEntry={true}
                         onChangeText={(password) => this.setState({ password })}
                         value={this.state.password}
                     />
                 </View>
 
+                </KeyboardAvoidingView>
 
-                <KeyboardAvoidingView behavior="position">
+
+                
                     <View style={{ marginTop: 50, margin: 10, }}>
                         <TouchableOpacity
                             onPress={this.SignUp.bind(this)}
@@ -265,7 +232,7 @@ class SignUp extends React.Component {
                         {/* <Text style={{ alignSelf: 'flex-end', paddingTop: 10 }}>FORGOT PASSWORD</Text> */}
                     </View>
 
-                </KeyboardAvoidingView>
+              
 
                 <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 20 }}>
                     <TouchableOpacity
@@ -298,6 +265,8 @@ class SignUp extends React.Component {
 
                 </View>
 
+
+                </ScrollView>
 
 
 
